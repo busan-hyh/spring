@@ -1,5 +1,7 @@
 package kr.co.hyh;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -8,8 +10,10 @@ import org.springframework.stereotype.Component;
 public class SamsungTV implements TV {
 	
 	// @Inject와 같은 역할 인젝트를 많이 씀
-	@Autowired 
+	// 인터페이스 주입, 이름을 적용할 수 있는 Resource 사용. 얘는 많이 안씀
+	@Resource(name="samsungSpeaker")
 	private Speaker speaker;
+	// 클래스 주입
 	@Autowired 
 	private Internet internet;
 	

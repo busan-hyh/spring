@@ -15,7 +15,7 @@ public class TVMain {
 		stv.power();
 		ltv.chDown();
 		stv.soundUp();
-		stv.disconnect();
+		ltv.disconnect();
 	}
 
 }

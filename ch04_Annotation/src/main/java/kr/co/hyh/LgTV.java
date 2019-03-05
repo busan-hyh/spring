@@ -1,5 +1,6 @@
 package kr.co.hyh;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Component;
@@ -9,8 +10,10 @@ import org.springframework.stereotype.Component;
 public class LgTV implements TV {
 	
 	// @Component로 생성된 speaker, internet객체를 여기로 주입, @Inject 하는것
-	@Inject
+	// 인터페이스 주입
+	@Resource(name="lgSpeaker")
 	private Speaker speaker;
+	// 클래스 주입
 	@Inject
 	private Internet internet;
 
