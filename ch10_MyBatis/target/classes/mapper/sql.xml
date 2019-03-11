@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.sql">
+	<insert id="INSERT_USER">
+		INSERT INTO `USER` SET 
+		uid=#{uid}, 
+		name=#{name}, 
+		hp=#{hp}, 
+		addr=#{addr}, 
+		pos=#{pos}, 
+		dep=#{dep}, 
+		rdate=NOW();
+	</insert>
+	<select id="SELECT_USER_LIST" resultType="kr.co.hyh.vo.UserVO">
+		SELECT * FROM `USER`;
+	</select>
+	<select id="SELECT_USER_ONE" resultType="kr.co.hyh.vo.UserVO">
+		SELECT * FROM `USER` WHERE seq=#{seq};
+	</select>
+</mapper>
