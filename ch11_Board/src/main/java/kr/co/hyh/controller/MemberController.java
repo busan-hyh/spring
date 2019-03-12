@@ -50,10 +50,11 @@ public class MemberController {
 		return "redirect:/login";
 	}
 	@RequestMapping(value="/usercheck", method=RequestMethod.GET)
+	@ResponseBody
 	public Map<String, Object> usercheck(@RequestParam("uid") String uid) {
+		//ResponseBody를 위해 pom에 jackson-databind 설치
 		Map<String, Object> data = service.usercheck(uid);
-		
-		System.out.println(data);
+
 		return data;
 	}
 	

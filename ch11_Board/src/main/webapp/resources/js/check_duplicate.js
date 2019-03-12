@@ -12,21 +12,20 @@ $(function(){
 				data: "uid="+value,
 				type: "GET",
 				dataType: 'JSON',
+				contentType:"application/json;charset=UTF-8",
 				success: function(data){
-					console.log(data);
+						if(data.result == 1){
+							$('.resultId').css('color', 'red').text('이미 사용중');
+							isUidOk = false;
+							tag.focus();
+						} else {
+							$('.resultId').css('color', 'green').text('사용가능');
+							isUidOk = true;
+						}
 				}
 			});
 			
-//			$.getJSON(api, function(data){
-//				if(data.result == 1){
-//					$('.resultId').css('color', 'red').text('이미 사용중');
-//					isUidOk = false;
-//					tag.focus();
-//				} else {
-//					$('.resultId').css('color', 'green').text('사용가능');
-//					isUidOk = true;
-//				}
-//			});
+			
 		}
 	});
 })
