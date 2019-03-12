@@ -1,12 +1,18 @@
 package kr.co.hyh.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.hyh.service.MemberService;
 import kr.co.hyh.vo.MemberVO;
@@ -22,6 +28,15 @@ public class MemberController {
 	public String login() {
 		return "/member/login";
 	}
+	
+	@RequestMapping(value="/terms")
+	public String terms(Model model) {
+		TermsVO vo = service.terms();
+		
+		model.addAttribute("termsVo", vo);
+		
+		return "/member/terms";
+	}
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public String register() {
 		return "/member/register";
@@ -32,13 +47,14 @@ public class MemberController {
 		vo.setRegip(req.getRemoteAddr());
 		service.register(vo);
 		
-		return "redirect:/list";
+		return "redirect:/login";
 	}
-	@RequestMapping(value="/terms")
-	public String terms(Model model) {
-		TermsVO vo = service.terms();
-		model.addAttribute("termsVo", vo);
+	@RequestMapping(value="/usercheck", method=RequestMethod.GET)
+	public Map<String, Object> usercheck(@RequestParam("uid") String uid) {
+		Map<String, Object> data = service.usercheck(uid);
 		
-		return "/member/terms";
+		System.out.println(data);
+		return data;
 	}
+	
 }

@@ -6,8 +6,9 @@
 		<title>회원가입</title>
 		<link rel="stylesheet" href="/hyh/css/style.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="/hyh/js/check_duplicate.js"></script>
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-		<script src="./js/get_post.js"></script>
+		<script src="/hyh/js/get_post.js"></script>
 	</head>
 	<body>
 		<div id="member">

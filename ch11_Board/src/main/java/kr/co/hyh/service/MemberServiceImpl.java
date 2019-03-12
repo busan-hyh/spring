@@ -1,5 +1,7 @@
 package kr.co.hyh.service;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -23,10 +25,17 @@ public class MemberServiceImpl implements MemberService {
 	public void register(MemberVO vo) {
 		dao.register(vo);
 	}
+	
+	@Override
+	public Map<String, Object> usercheck(String uid) {
+		return dao.usercheck(uid);
+	}
 
 	@Override
 	public void login() {
 		
 	}
+
+
 
 }

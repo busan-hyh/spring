@@ -18,4 +18,7 @@
 	<select id="SELECT_TURMS" resultType="kr.co.hyh.vo.TermsVO">
 		SELECT * FROM `JSP_TERMS`;
 	</select>
+	<select id="SELECT_UID_COUNT" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM `JSP_MEMBER` WHERE uid=#{uid};
+	</select>
 </mapper>
