@@ -1,14 +1,13 @@
 package kr.co.hyh.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,9 +23,24 @@ public class MemberController {
 	@Inject
 	private MemberService service;
 
-	@RequestMapping(value="/login")
+	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login() {
 		return "/member/login";
+	}
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String login(HttpSession sess, MemberVO vo) {
+		// vo를 안쓰고 매개변수에서 String uid, String pass를 써도 됨(복잡쓰)
+		MemberVO member = service.login(vo);
+		
+		if(member != null) {
+			// 세션 저장
+			sess.setAttribute("member", member);
+			
+			return "redirect:/list";
+		}else {
+			
+			return "redirect:/login?result=fail";	
+		}
 	}
 	
 	@RequestMapping(value="/terms")
@@ -56,6 +70,12 @@ public class MemberController {
 		Map<String, Object> data = service.usercheck(uid);
 
 		return data;
+	}
+	
+	@RequestMapping(value="/logout")
+	public String logout(HttpSession sess) {
+		sess.invalidate();
+		return "redirect:/list";
 	}
 	
 }

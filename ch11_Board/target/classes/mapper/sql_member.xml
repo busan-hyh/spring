@@ -13,12 +13,15 @@
 		addr1=#{addr1},
 		addr2=#{addr2},
 		regip=#{regip},
-		rdate=NOW();
+		rdate=NOW()
 	</insert>
 	<select id="SELECT_TURMS" resultType="kr.co.hyh.vo.TermsVO">
-		SELECT * FROM `JSP_TERMS`;
+		SELECT * FROM `JSP_TERMS`
 	</select>
 	<select id="SELECT_UID_COUNT" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM `JSP_MEMBER` WHERE uid=#{uid};
+		SELECT COUNT(*) FROM `JSP_MEMBER` WHERE uid=#{uid}
+	</select>
+	<select id="SELECT_LOGIN" resultType="kr.co.hyh.vo.MemberVO">
+		SELECT * FROM `JSP_MEMBER` WHERE uid=#{uid} AND pass=PASSWORD(#{pass})
 	</select>
 </mapper>

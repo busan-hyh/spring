@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,7 +12,12 @@
 			<h3>글목록</h3>
 			<!-- 리스트 -->
 			<div class="list">
-				<p class="logout">홍길동님! 반갑습니다. <a href="#">[로그아웃]</a><p>
+				<c:if test="${ member = null }">
+				<p class="logout"><a href="/hyh/login">[로그인]</a><p>
+				</c:if>
+				<c:if test="${ member != null }">
+				<p class="logout">${ member.nick }님! 반갑습니다. <a href="/hyh/logout">[로그아웃]</a><p>
+				</c:if>
 				<table>
 					<tr>
 						<td>번호</td>
@@ -20,25 +26,34 @@
 						<td>날짜</td>
 						<td>조회</td>
 					</tr>
-				
+					<c:forEach var="vo" items="${ list }">
 					<tr>
-						<td>1</td>
-						<td><a href="#">테스트 제목입니다.</a>&nbsp;[3]</td>
-						<td>홍길동</td>
-						<td>18-03-01</td>
-						<td>12</td>
+						<td>${ count=count-1 }</td>
+						<td><a href="/hyh/view?seq=${ vo.seq }">${ vo.title }</a>&nbsp;[${ vo.comment }]</td>
+						<td>${ vo.nick }</td>
+						<td>${ vo.rdate.substring(2,10) }</td>
+						<td>${ vo.hit }</td>
 					</tr>
+					</c:forEach>
 				</table>
 			</div>
 			<!-- 페이징 -->
 			<nav class="paging">
 				<span> 
-				<a href="#" class="prev">이전</a>
-				<a href="#" class="num">1</a>
-				<a href="#" class="next">다음</a>
+				<c:if test="${ pageGroupStartEnd[0]  > 1}" >
+				<a href="/hyh/list?pg=${ pageGroupStartEnd[0]-1}" class="prev">이전</a>
+				</c:if>
+				<c:forEach var="k" begin="${ pageGroupStartEnd[0] }" end="${ pageGroupStartEnd[1] }">
+				<a href="/hyh/list?pg=${ k }" class="num">${ k }</a>
+				</c:forEach>
+				<c:if test="${ pageGroupStartEnd[1]  < pageEnd }" >
+				<a href="/hyh/list?pg=${ pageGroupStartEnd[1]+1 }" class="next">다음</a>
+				</c:if>
 				</span>
 			</nav>
-			<a href="#" class="btnWrite">글쓰기</a>
+			<c:if test="${ member != null }">
+			<a href="/hyh/write" class="btnWrite">글쓰기</a>
+			</c:if>
 		</div>
 	</body>
 

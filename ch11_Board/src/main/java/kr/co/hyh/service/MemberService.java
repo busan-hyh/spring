@@ -9,6 +9,6 @@ public interface MemberService {
 	public TermsVO terms();
 	public void register(MemberVO vo);
 	public Map<String, Object> usercheck(String uid);
-	public void login();
+	public MemberVO login(MemberVO vo);
 
 }

@@ -35,8 +35,8 @@ public class MemberDao {
 		return data;
 	}
 	
-	public void login() {
-		
+	public MemberVO login(MemberVO vo) {
+		return mybatis.selectOne("mapper.sql_member.SELECT_LOGIN", vo);
 	}
 
 }
