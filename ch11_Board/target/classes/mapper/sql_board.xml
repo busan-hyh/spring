@@ -10,14 +10,37 @@
 	<select id="SELECT_TOTAL" resultType="integer">
 		SELECT COUNT(*) FROM `JSP_BOARD` WHERE parent=0
 	</select>
+	<select id="SELECT_VIEW" resultType="kr.co.hyh.vo.BoardVO">
+		SELECT * FROM `JSP_BOARD` WHERE seq=#{seq}
+	</select>
+	<select id="SELECT_COMMENT" resultType="kr.co.hyh.vo.BoardVO">
+		SELECT b.*, m.nick FROM JSP_BOARD 
+		AS b JOIN JSP_MEMBER AS m ON b.uid = m.uid 
+		WHERE parent=#{seq} 
+		ORDER BY b.seq ASC 
+	</select>
 	<insert id="INSERT_BOARD">
 		INSERT INTO `JSP_BOARD` SET 
 		cate='notice', 
 		title=#{title}, 
 		content=#{content}, 
+		file=#{file}, 
 		uid=#{uid}, 
 		regip=#{regip}, 
 		rdate=NOW()
+		<selectKey resultType="int" keyProperty="seq" order="AFTER">
+	        SELECT LAST_INSERT_SEQ()
+	    </selectKey>  
 	</insert>
+	<insert id="INSERT_FILE">
+		INSERT INTO `JSP_FILE` SET
+		parent=#{parent},
+		oldName=#{oldName}, 
+		newName=#{newName}, 
+		rdate=NOW()
+	</insert>
+	<delete id="DELETE_LIST">
+		DELETE FROM `JSP_BOARD` WHERE seq=#{seq}
+	</delete>
 	
 </mapper>

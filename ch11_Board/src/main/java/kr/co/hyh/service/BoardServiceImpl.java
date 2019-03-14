@@ -1,13 +1,18 @@
 package kr.co.hyh.service;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hyh.dao.BoardDao;
 import kr.co.hyh.vo.BoardVO;
+import kr.co.hyh.vo.FileVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -21,8 +26,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void view() {
-		
+	public BoardVO view(String seq) {
+		return dao.view(seq);
+	}
+
+	@Override
+	public List<BoardVO> viewcomment(String seq) {
+		return dao.viewcomment(seq);
 	}
 
 	@Override
@@ -85,5 +95,45 @@ public class BoardServiceImpl implements BoardService {
 
 		return groupStartEnd;
 	}
+
+	@Override
+	public void delete(String seq) {
+		dao.delete(seq);
+	}
+
+	@Override
+	public int fileUpload(HttpServletRequest req, MultipartFile fName, int fParent) {
+		// 파일 디렉토리 설정
+		String path = req.getSession().getServletContext().getRealPath("/");
+		path += "resources/upload/";
+		
+		if(!fName.isEmpty()) {
+			// 파일이 첨부됐을때
+			// 파일이름 처리
+			String oName = fName.getOriginalFilename();
+			String ext = oName.substring(oName.lastIndexOf("."));
+			// uuid : 중복되지 않는 아이디값 제공
+			String uName = UUID.randomUUID().toString()+ext;
+			
+			// JSP_FILE 테이블에 파일명 저장
+			FileVO vo = new FileVO();
+			vo.setParent(fParent);
+			vo.setOldName(oName);
+			vo.setNewName(uName);
+			dao.fileUpload(vo);
+			
+			// 파일 전송
+			try {
+				fName.transferTo(new File(path+uName));
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
 
 }

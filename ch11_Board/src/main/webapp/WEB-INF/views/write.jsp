@@ -10,7 +10,7 @@
 		<div id="board">
 			<h3>글쓰기</h3>
 			<div class="write">
-				<form action="/hyh/write" method="post">
+				<form action="/hyh/write" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="uid" value="${ member.uid }" />
 					<input type="hidden" name="regip" value="${ member.regip }" />
 					<table>
@@ -27,7 +27,7 @@
 						<tr>
 							<td>첨부</td>
 							<td>
-								<!-- <input type="file" name="file" /> -->
+								<input type="file" name="fname" />
 							</td>
 						</tr>
 					</table>

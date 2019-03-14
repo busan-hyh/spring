@@ -1,5 +1,7 @@
 package kr.co.hyh.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVO {
 	private int seq;
 	private int parent;
@@ -14,6 +16,15 @@ public class BoardVO {
 	private String rdate;
 	private String nick;
 	
+	// 스프링에서 제공하는 파일업로드용 타입
+	private MultipartFile fname;
+	
+	public MultipartFile getFname() {
+		return fname;
+	}
+	public void setFname(MultipartFile fname) {
+		this.fname = fname;
+	}
 	private String oldName;
 	private String newName;
 	private int download;

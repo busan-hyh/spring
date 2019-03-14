@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,10 +15,10 @@
 					<table>
 						<tr>
 							<td>제목</td>
-							<td><input type="text" name="subject" value="테스트 제목 입니다." readonly />
+							<td><input type="text" name="title" value="${ view.title }" readonly />
 							</td>
 						</tr>
-						
+						<c:if test="${ view.file != 0 }">
 						<tr>
 							<td>첨부파일</td>
 							<td>
@@ -25,17 +26,19 @@
 								<span>3회 다운로드</span>
 							</td>
 						</tr>
-						
+						</c:if>
 						<tr>
 							<td>내용</td>
 							<td>
-								<textarea name="content" rows="20" readonly>테스트 내용 입니다.</textarea>
+								<textarea name="content" rows="20" readonly>${ view.content }</textarea>
 							</td>
 						</tr>
 					</table>
 					<div class="btns">
-						<a href="#" class="cancel del">삭제</a>
+						<c:if test="${ view.uid == member.uid }">
+						<a href="/hyh/delete?seq=${ view.seq }" class="cancel del">삭제</a>
 						<a href="#" class="cancel mod">수정</a>
+						</c:if>
 						<a href="#" class="cancel">목록</a>
 					</div>
 				</form>
@@ -43,27 +46,33 @@
 			
 			<!-- 댓글리스트 -->
 			<section class="comments">
+				<c:if test="${ comment != null }">
 				<h3>댓글목록</h3>
-				
+				</c:if>
+				<c:forEach var="vo" items="${ comment }">
 				<div class="comment">
 					<span>
-						<span>홍길동</span>
-						<span>18-03-01</span>
+						<span>${ vo.nick }</span>
+						<span>${ vo.rdate.substring(2,10) }</span>
 					</span>
-					<textarea>테스트 댓글입니다.</textarea>
+					<textarea>${ vo.content }</textarea>
 					<div>
-						<a href="#" class="del">삭제</a>
+						<c:if test="${ vo.uid == member.uid }">
+						<a href="/hyh/delete/seq=?${ vo.seq }" class="del">삭제</a>
 						<a href="#" class="mod">수정</a>
+						</c:if>
 					</div>
 				</div>
-			
+				</c:forEach>
+				<c:if test="${ comment == null }">
 				<p class="empty">
 					등록된 댓글이 없습니다.
 				</p>
-				
+				</c:if>
 			</section>
 			
 			<!-- 댓글쓰기 -->
+			<c:if test="${ member != null }">
 			<section class="comment_write">
 				<h3>댓글쓰기</h3>
 				<div>
@@ -76,6 +85,7 @@
 					</form>
 				</div>
 			</section>
+			</c:if>
 		</div><!-- board 끝 -->
 	</body>
 

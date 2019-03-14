@@ -12,7 +12,7 @@
 			<h3>글목록</h3>
 			<!-- 리스트 -->
 			<div class="list">
-				<c:if test="${ member = null }">
+				<c:if test="${ member == null }">
 				<p class="logout"><a href="/hyh/login">[로그인]</a><p>
 				</c:if>
 				<c:if test="${ member != null }">
