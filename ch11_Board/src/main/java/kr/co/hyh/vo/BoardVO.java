@@ -19,6 +19,7 @@ public class BoardVO {
 	// 스프링에서 제공하는 파일업로드용 타입
 	private MultipartFile fname;
 	
+	// 파일 네임용 변수들
 	public MultipartFile getFname() {
 		return fname;
 	}

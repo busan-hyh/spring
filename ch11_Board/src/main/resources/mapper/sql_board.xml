@@ -19,7 +19,11 @@
 		WHERE parent=#{seq} 
 		ORDER BY b.seq ASC 
 	</select>
-	<insert id="INSERT_BOARD">
+	<select id="SELECT_FILE" resultType="kr.co.hyh.vo.FileVO">
+		SELECT * FROM `JSP_FILE` 
+		WHERE parent=#{seq}
+	</select>
+	<insert id="INSERT_BOARD" useGeneratedKeys="true" keyProperty="seq">
 		INSERT INTO `JSP_BOARD` SET 
 		cate='notice', 
 		title=#{title}, 
@@ -27,18 +31,31 @@
 		file=#{file}, 
 		uid=#{uid}, 
 		regip=#{regip}, 
-		rdate=NOW()
-		<selectKey resultType="int" keyProperty="seq" order="AFTER">
-	        SELECT LAST_INSERT_SEQ()
-	    </selectKey>  
+		rdate=NOW();
 	</insert>
-	<insert id="INSERT_FILE">
+	<insert id="INSERT_FILE_WRITE">
 		INSERT INTO `JSP_FILE` SET
 		parent=#{parent},
 		oldName=#{oldName}, 
 		newName=#{newName}, 
 		rdate=NOW()
 	</insert>
+	<insert id="INSERT_COMM" parameterType="hashmap">
+		INSERT INTO `JSP_BOARD` SET
+		parent=#{parent},
+		uid=#{uid},
+		content=#{content},
+		rdate=NOW()
+	</insert>
+	<update id="UPDATE_VIEW">
+		UPDATE `JSP_BOARD` SET hit=hit+1 WHERE seq=#{seq}
+	</update>
+	<update id="UPDATE_COMM">
+		UPDATE `JSP_BOARD` SET comment = comment + 1 WHERE seq=#{parent};
+	</update>
+	<update id="UPDATE_FILE_DOWNLOAD">
+		UPDATE `JSP_FILE` SET download=download+1 WHERE parent=#{parent}
+	</update>
 	<delete id="DELETE_LIST">
 		DELETE FROM `JSP_BOARD` WHERE seq=#{seq}
 	</delete>

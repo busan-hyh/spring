@@ -2,6 +2,7 @@ package kr.co.hyh.service;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -36,8 +37,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void write(BoardVO vo) {
-		dao.write(vo);
+	public int write(BoardVO vo) {
+		return dao.write(vo);
 	}
 
 	@Override
@@ -102,10 +103,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int fileUpload(HttpServletRequest req, MultipartFile fName, int fParent) {
+	public FileVO fileUpload(HttpServletRequest req, MultipartFile fName) {
 		// 파일 디렉토리 설정
 		String path = req.getSession().getServletContext().getRealPath("/");
 		path += "resources/upload/";
+		FileVO vo = new FileVO();
 		
 		if(!fName.isEmpty()) {
 			// 파일이 첨부됐을때
@@ -116,11 +118,8 @@ public class BoardServiceImpl implements BoardService {
 			String uName = UUID.randomUUID().toString()+ext;
 			
 			// JSP_FILE 테이블에 파일명 저장
-			FileVO vo = new FileVO();
-			vo.setParent(fParent);
 			vo.setOldName(oName);
 			vo.setNewName(uName);
-			dao.fileUpload(vo);
 			
 			// 파일 전송
 			try {
@@ -128,12 +127,32 @@ public class BoardServiceImpl implements BoardService {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			
-			return 1;
-		} else {
-			return 0;
 		}
+		
+		return vo;
 	}
+
+	@Override
+	public void fileWrite(FileVO vo) {
+		dao.fileWrite(vo);
+	}
+
+	@Override
+	public FileVO fileView(String seq) {
+		return dao.fileView(seq);
+	}
+
+	@Override
+	public void fileUpdate(String parent) {
+		dao.fileUpdate(parent);
+	}
+
+	@Override
+	public void writecomment(Map<String, Object> comment) {
+		dao.writecomment(comment);
+		
+	}
+
 
 
 }

@@ -1,22 +1,34 @@
 package kr.co.hyh.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.hyh.service.BoardService;
 import kr.co.hyh.vo.BoardVO;
+import kr.co.hyh.vo.FileVO;
 import kr.co.hyh.vo.MemberVO;
 
 
@@ -68,6 +80,10 @@ public class BoardController {
 		MemberVO member = (MemberVO) sess.getAttribute("member");
 		model.addAttribute("member", member);
 		
+		FileVO file = service.fileView(seq);
+		model.addAttribute("file", file);
+		
+		
 		return "/view";
 	}
 	@RequestMapping(value="/write", method=RequestMethod.GET)
@@ -80,16 +96,84 @@ public class BoardController {
 		MultipartFile fName = vo.getFname();
 		int fParent = vo.getSeq();
 		// 파일이 있으면 fileUpload에서 리턴받은 숫자(0or1) setFile
-		vo.setFile(service.fileUpload(req, fName, fParent));
+		FileVO filevo = service.fileUpload(req, fName);
 		
-		service.write(vo);
+		if(!vo.getFname().isEmpty()) {
+			vo.setFile(1);
+		} else {
+			vo.setFile(0);
+		}
+		
+		int newSeq = service.write(vo);
+
+		// 파일정보 테이블 저장
+		filevo.setParent(newSeq);
+		service.fileWrite(filevo);
 		
 		return "redirect:/list";
+	}
+	
+	@RequestMapping(value="/fileDownload")
+	public void fileDownload(HttpServletRequest req, HttpServletResponse resp, String parent) {
+		FileVO vo = service.fileView(parent);
+		String filePath = req.getSession().getServletContext().getRealPath("/");
+			   filePath += "resources/upload/"+vo.getNewName();
+		service.fileUpdate(parent);
+		try {
+			File file = new File(filePath);
+			
+			String name = new String(vo.getOldName().getBytes("UTF-8"), "iso-8859-1");
+			resp.setHeader("Cache-Control", "no-cache");
+			resp.setHeader("Content-Disposition", "attachment; filename="+name);
+			resp.setHeader("Content-Transfer-Encoding", "binary");
+			resp.setHeader("Pragma", "no-cache");
+			
+			// 스트림 연결 : 파일 ---- response객체 
+			BufferedInputStream  bis = new BufferedInputStream(new FileInputStream(file));
+			BufferedOutputStream bos = new BufferedOutputStream(resp.getOutputStream()); 
+			
+			
+			byte buffer[] = new byte[1024*8];
+			
+			while(true){
+				// Input스트림으로 데이터 읽어오기	
+				int read = bis.read(buffer);
+				if(read == -1){
+					break;
+				}
+				
+				// Output 스트림으로 데이터 쓰기
+				bos.write(buffer, 0, read);
+			}
+			
+			bis.close();
+			bos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@RequestMapping(value="/delete")
 	public String delete(String seq) {
 		service.delete(seq);
 		return "redirect:/list";
+	}
+	@RequestMapping(value="/commentdelete")
+	public String commentDelete(String seq, String parent) {
+		service.delete(seq);
+		return "redirect:/view?seq="+parent;
+	}
+	
+	@RequestMapping(value="/writecomment", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> writecomment(@RequestBody Map<String, Object> comment) {
+		
+		service.writecomment(comment);
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
+		String date = sdf.format(new Date());
+		comment.put("date", date);
+		
+		return comment;
 	}
 }
