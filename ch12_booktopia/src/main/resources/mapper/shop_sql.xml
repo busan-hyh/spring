@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.shop_sql">
+	<select id="SELECT_LIST" resultType="kr.co.booktopia.vo.ListVO">
+	</select>
+	<select id="SELECT_VIEW" resultType="kr.co.booktopia.vo.ListVO">
+		SELECT * FROM `BT_SHOP_GOODS` AS L 
+		INNER JOIN `BT_SHOP_GOODS_IMAGE` AS I
+		ON L.GOODS_ID = I.GOODS_ID 
+		WHERE L.GOODS_ID=#{ goods_id } 
+		GROUP BY L.GOODS_ID
+	</select>
+</mapper>

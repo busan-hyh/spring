@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 <html>
 <head>
   <meta charset="utf-8">
@@ -125,10 +126,10 @@
           <h3>베스트셀러</h3>
           <c:forEach var="vo" items="${ bestseller }">
           <div class="book">
-            <a href="/booktopia/store/view?goods_id=${ vo.GOODS_ID }">
+            <a href="/booktopia/shop/view?goods_id=${ vo.GOODS_ID }">
               <img width="121" height="154" src="/booktopia/resource/thumb_${ vo.GOODS_ID }.png">
               <div class="title">${ vo.GOODS_TITLE }</div>
-              <div class="price">${ vo.GOODS_SALES_PRICE }원</div>
+              <div class="price"><fmt:formatNumber value="${ vo.GOODS_SALES_PRICE }" pattern="#,###"/>원</div>
             </a>
           </div>
           </c:forEach>
@@ -144,10 +145,10 @@
           
           <c:forEach var="vo" items="${ newbook }">
           <div class="book">
-            <a href="/booktopia/store/view?goods_id=${ vo.GOODS_ID }">
+            <a href="/booktopia/shop/view?goods_id=${ vo.GOODS_ID }">
               <img width="121" height="154" src="/booktopia/resource/thumb_${ vo.GOODS_ID }.png">
               <div class="title">${ vo.GOODS_TITLE }</div>
-              <div class="price">${ vo.GOODS_SALES_PRICE }원</div>
+              <div class="price"><fmt:formatNumber value="${ vo.GOODS_SALES_PRICE }" pattern="#,###"/>원</div>
             </a>
           </div>
           </c:forEach>
@@ -162,10 +163,10 @@
           <h3>스테디셀러</h3>
           <c:forEach var="vo" items="${ steadyseller }">
           <div class="book">
-            <a href="/booktopia/store/view?goods_id=${ vo.GOODS_ID }">
+            <a href="/booktopia/shop/view?goods_id=${ vo.GOODS_ID }">
               <img width="121" height="154" src="/booktopia/resource/thumb_${ vo.GOODS_ID }.png">
               <div class="title">${ vo.GOODS_TITLE }</div>
-              <div class="price">${ vo.GOODS_SALES_PRICE }원</div>
+              <div class="price"><fmt:formatNumber value="${ vo.GOODS_SALES_PRICE }" pattern="#,###"/>원</div>
             </a>
           </div>
           </c:forEach>
