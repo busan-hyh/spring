@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.main_sql">
+	<select id="SELECT_LOGIN" resultType="kr.co.cz.vo.UserVO">
+		SELECT * FROM `CZ_USER` WHERE uid=#{uid} AND pass=PASSWORD(#{pass})
+	</select>
+	<update id="UPDATE_LDATE">
+		UPDATE `CZ_USER` SET ldate = NOW() WHERE uid=#{uid}
+	</update>
+</mapper>
