@@ -1,8 +1,7 @@
 package kr.co.cz.controller;
 
-import java.util.Map;
-
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +31,16 @@ public class UploadController {
 	public String upload() {
 		return "/upload/upload";
 	}
-	@RequestMapping(value="/uploadData", method=RequestMethod.GET)
-	public Map<String, Object> upload(ItemVO vo) {
-		return null;
+	@RequestMapping(value="/upload", method=RequestMethod.POST)
+	public String upload(ItemVO vo, HttpSession sess) {
+//		UserVO user = (UserVO) sess.getAttribute("user");
+//		vo.setUid(user.getUid());
+		
+		vo.setIng("1");
+		vo.setUid("test");
+		service.upload(vo);
+		
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/modify")

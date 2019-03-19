@@ -9,4 +9,24 @@
 		hp=#{hp},
 		rdate=NOW()
 	</insert>
+	<insert id="INSERT_ITEM">
+		INSERT INTO `CZ_ITEMS`(`uid`, `rdate`, `ing`, `case_of`, 
+			`kind_of`, `gu`, `dong`, `detail_addr`, `scale_meter`, `scale_pyung`, 
+			`memo`, `sale_money_int`, `sale_money_unit`, `sale_jeonse_money_int`, 
+			`sale_jeonse_money_unit`, `sale_rend_money`, `up_floor`, `down_floor`, 
+			`scale_toji`, `scale_yeon`, `scale_gun`, `jeonse_money_int`, 
+			`jeonse_money_unit`, `jeonse_seqr_money`, `jeonse_rend_money`, `rent_save_int`, 
+			`rent_save_unit`, `rent_int`, `rent_unit`, `rent_seqr_money`, `rent_rend_money`, 
+			`pkl`, `elb`, `mng1_kind`, `mng1_name`, `mng1_hp`, `mng2_kind`, `mng2_name`, 
+			`mng2_hp`, `slr1_kind`, `slr1_name`, `slr1_hp`, `slr2_kind`, `slr2_name`, `slr2_hp`)
+		VALUES(#{uid}, NOW(), #{ing}, #{case_of}, 
+			#{kind_of}, #{gu}, #{dong}, #{detail_addr}, #{scale_meter}, #{scale_pyung}, 
+			#{memo}, #{sale_money_int}, #{sale_money_unit}, #{sale_jeonse_money_int}, 
+			#{sale_jeonse_money_unit}, #{sale_rend_money}, #{up_floor}, #{down_floor}, 
+			#{scale_toji}, #{scale_yeon}, #{scale_gun}, #{jeonse_money_int}, 
+			#{jeonse_money_unit}, #{jeonse_seqr_money}, #{jeonse_rend_money}, #{rent_save_int}, 
+			#{rent_save_unit}, #{rent_int}, #{rent_unit}, #{rent_seqr_money}, #{rent_rend_money}, 
+			#{pkl}, #{elb}, #{mng1_kind}, #{mng1_name}, #{mng1_hp}, #{mng2_kind}, #{mng2_name}, 
+			#{mng2_hp}, #{slr1_kind}, #{slr1_name}, #{slr1_hp}, #{slr2_kind}, #{slr2_name}, #{slr2_hp})
+	</insert>
 </mapper>

@@ -1,8 +1,4 @@
 $(document).ready(function(){
-    $('#forSale').show();
-    $('#forJeonse').hide();
-    $('#forRent').hide();
-
     $('#case').change(function(){
         var state = $('#case option:selected').val();
 
@@ -33,48 +29,32 @@ $("input:text[numberOnly]").on("keyup", function() {
 });
 
 $(document).ready(function(){
-    // 담당자 추가 삭제
-    $('#managerPlus').bind('click', function(){
-    	
-        var manager = $(this).parent().parent();
-        var managerClone = manager.clone();
-        managerClone.find('input').val('');
-        managerClone.find('input:first').val('1');
-        managerClone.find('input').attr('name','manager2');
-        managerClone.find('#managerPlus').attr('value','-');
-        managerClone.find('#managerPlus').attr('id','managerMinus');
-        
-        $(this).closest('tr').after(managerClone);
-        $(this).css('display','none');
-    })
-    $(document).on('click','#managerMinus',function(){
-//        $(this).closest('tr').remove();
-    	
-    	
-    	
-    	////////////////////////////////////////
-        $('#managerPlus').css('display','block');
-        $('#manager2 *').css('display','none');
-        ////////////////////////////////////////
-    })
+	$('#managerPlus').bind('click', function(){
+	    var managerInner = '<tr><td><input type="hidden" name="mng2_kind" value="1">담당자</td>';
+	    managerInner += '<td><input type="text" name="mng2_name" value=" "></td>';
+	    managerInner += '<td><input type="text" name="mng2_hp" value=" "></td>';
+	    managerInner += '<td><input id="managerMinus" type="button" value="-" /></td></tr>';
+	    $(this).closest('tr').after(managerInner);
+	    $(this).hide();
+	})
+	$(document).on('click','#managerMinus',function(){
+		$('#managerPlus').show();
+	    $(this).closest('tr').remove();
+	})
 
-    // 명의자 추가 삭제
-    $('#sellerPlus').bind('click',function(){
-        var seller = $(this).parent().parent();
-        var sellerClone = seller.clone();
-        sellerClone.find('input').val('');
-        sellerClone.find('select').attr('name','seller2');
-        sellerClone.find('input').attr('name','seller2');
-        sellerClone.find('#sellerPlus').attr('value','-');
-        sellerClone.find('#sellerPlus').attr('id','sellerMinus');
-        
-        $(this).closest('tr').after(sellerClone);
-        $(this).css('display','none');
-    })
-    $(document).on('click','#sellerMinus',function(){
-        $(this).closest('tr').remove();
-        $('#sellerPlus').css('display','block');
-    })
+	$('#sellerPlus').bind('click',function(){
+	    var sellerInner = '<tr><td><select name="slr2_kind" id="seller"><option value="2" selected>명의자</option>';
+	    sellerInner += '<option value="3">관리자</option></select></td>';
+	    sellerInner += '<td><input name="slr2_name" type="text" value=" "></td>';
+	    sellerInner += '<td><input name="slr2_hp" type="text" value=" "></td>';
+	    sellerInner += '<td><input id="sellerMinus" type="button" value="-" /></td></tr>';
+	    $(this).closest('tr').after(sellerInner);
+	    $(this).hide();
+	})
+	$(document).on('click','#sellerMinus',function(){
+		$('#sellerPlus').show();
+	    $(this).closest('tr').remove();
+	})
 })
 
 // 메인카드 제곱미터 ↔ 평형

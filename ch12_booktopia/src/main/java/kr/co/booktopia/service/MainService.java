@@ -1,11 +1,10 @@
 package kr.co.booktopia.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.booktopia.vo.ListVO;
 
 public interface MainService {
-	public List<ListVO> indexBestseller();
-	public List<ListVO> indexNewbook();
-	public List<ListVO> indexSteadyseller();
+	public Map<String, List<ListVO>> listGoods();
 }

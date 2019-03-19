@@ -13,10 +13,10 @@
     <div class="wrapper">
             <img src="/cz/img/logo.png" alt="로고" />
         <div class="dashboard">
-            <a href="/cz/list" class="dashbtn">매매</a>
-            <a href="#" class="dashbtn">전세</a>
-            <a href="#" class="dashbtn">월세</a>
-            <a href="#" class="dashbtn">임대</a>
+            <a href="/cz/list?case_of=매매" class="dashbtn">매매</a>
+            <a href="/cz/list?case_of=전세" class="dashbtn">전세</a>
+            <a href="/cz/list?case_of=월세" class="dashbtn">월세</a>
+            <a href="/cz/list?case_of=임대" class="dashbtn">임대</a>
             <a href="/cz/mylist" class="dashbtn dashmybtn">내물건</a>
             <a href="/cz/upload" class="dashbtn dashmybtn">업로드</a>
         </div>

@@ -22,41 +22,13 @@ public class ListVO {
 	private String GOODS_CONTENTS_ORDER;
 	private String GOODS_CREDATE;
 	
-	private int IMAGE_ID;
 	private String FILENAME;
-	private String REG_ID;
-	private String FILETYPE;
-	private String CREDATE;
 	
-	public int getIMAGE_ID() {
-		return IMAGE_ID;
-	}
-	public void setIMAGE_ID(int iMAGE_ID) {
-		IMAGE_ID = iMAGE_ID;
-	}
 	public String getFILENAME() {
 		return FILENAME;
 	}
 	public void setFILENAME(String fILENAME) {
 		FILENAME = fILENAME;
-	}
-	public String getREG_ID() {
-		return REG_ID;
-	}
-	public void setREG_ID(String rEG_ID) {
-		REG_ID = rEG_ID;
-	}
-	public String getFILETYPE() {
-		return FILETYPE;
-	}
-	public void setFILETYPE(String fILETYPE) {
-		FILETYPE = fILETYPE;
-	}
-	public String getCREDATE() {
-		return CREDATE;
-	}
-	public void setCREDATE(String cREDATE) {
-		CREDATE = cREDATE;
 	}
 	public int getGOODS_ID() {
 		return GOODS_ID;

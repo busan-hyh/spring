@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                         <td>유형</td>
-                        <td colspan="2"><select name="case" id="case">
+                        <td colspan="2"><select name="case_of" id="case">
                             <option value="매매" selected>매매</option>
                             <option value="전세">전세</option>
                             <option value="월세">월세</option>
@@ -103,7 +103,7 @@
                     </tr>
                     <tr>
                         <td>대출금</td>
-                        <td colspan="2"><input type="text" name="sale_rend_money" numberOnly>원</td>
+                        <td colspan="2"><input type="text" name="sale_rend_money" numberOnly>만원</td>
                     </tr>
                     <tr>
                         <td>층수</td>
@@ -137,11 +137,11 @@
                     </tr>
                     <tr>
                         <td>관리비</td>
-                        <td><input type="text" name="jeonse_seqr_money" numberOnly>원</td>
+                        <td><input type="text" name="jeonse_seqr_money" numberOnly>만원</td>
                     </tr>
                     <tr>
                         <td>대출금</td>
-                        <td><input type="text" name="jeonse_rend_money" numberOnly>원</td>
+                        <td><input type="text" name="jeonse_rend_money" numberOnly>만원</td>
                     </tr>
                 </table>
                 <table id="forRent">
@@ -167,11 +167,11 @@
                     </tr>
                     <tr>
                         <td>관리비</td>
-                        <td><input type="text" name="rent_seqr_money" numberOnly>원</td>
+                        <td><input type="text" name="rent_seqr_money" numberOnly>만원</td>
                     </tr>
                     <tr>
                         <td>대출금</td>
-                        <td><input type="text" name="rent_rend_money" numberOnly>원</td>
+                        <td><input type="text" name="rent_rend_money" numberOnly>만원</td>
                     </tr>
                 </table>
                 <table id="etc">
@@ -192,27 +192,22 @@
                 </table>
                 <table id="connect">
                     <tr>
-                        <td><input type="hidden" name="manager1" value="1">담당자</td></td>
-                        <td><input type="text" name="manager1" value="홍길동"></td>
-                        <td><input type="text" name="manager1" value="010-0238-4784"></td>
+                        <td><input type="hidden" name="mng1_kind" value="1">담당자</td></td>
+                        <td><input type="text" name="mng1_name" value="홍길동"></td>
+                        <td><input type="text" name="mng1_hp" value="010-0238-4784"></td>
                         <td><input id="managerPlus" type="button" value="+" /></td>
                     </tr>
-                    <tr id="manager2">
-                        <td><input id="manager2" type="hidden" name="manager1" value="1">담당자</td></td>
-                        <td><input id="manager2" type="text" name="manager1" value="홍길동"></td>
-                        <td><input id="manager2" type="text" name="manager1" value="010-0238-4784"></td>
-                        <td><input id="manager2" id="managerPlus" type="button" value="+" /></td>
-                    </tr>
                     <tr>
-                        <td><select name="seller1" id="seller">
+                        <td><select name="slr1_kind" id="seller">
                             <option value="2" selected>명의자</option>
                             <option value="3">관리자</option>
                         </select></td>
-                        <td><input name="seller1" type="text" value=" "></td>
-                        <td><input name="seller1" type="text" value=" "></td>
+                        <td><input name="slr1_name" type="text" value=""></td>
+                        <td><input name="slr1_hp" type="text" value=""></td>
                         <td><input id="sellerPlus" type="button" value="+" /></td>
                     </tr>
                 </table>
+                <input type="button" id="uploadCancle" onclick="history.back(-1);" value="취소" />
                 <input type="submit" id="uploadSubmit" value="저장" />
             </form>
         </div>

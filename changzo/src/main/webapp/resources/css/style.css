@@ -94,6 +94,8 @@ a:hover, a:active, a:focus { text-decoration:none; }
 
 
 /* Upload Card */
+#forJeonse, #forRent { display:none; }
+
 .uploadrCard table {
     width: 100%;
     border-collapse: collapse;
@@ -124,9 +126,18 @@ a:hover, a:active, a:focus { text-decoration:none; }
     width: 67px;
     height: 38px;
 }
+.uploadrCard #uploadCancle {
+    font-size: 1.5em;
+    float: left;
+    width: 67px;
+    height: 38px;
+}
 .uploadrCard td span {
     font-size: 1em;
     font-weight: 600;
+}
+#manager2, #manager2 * {
+	display:none;
 }
 /* #main */
 .uploadrCard #main td:nth-child(1) { width: 30%; text-align: center; }
@@ -166,6 +177,7 @@ a:hover, a:active, a:focus { text-decoration:none; }
     box-shadow: 0px 1px 6px 0 rgba(0, 0, 0, 0.4);
 }
 .listheader h2 {
+	color: #fff;
     text-align: center;
     font-size: 3em;
     margin-bottom: 10px;
@@ -197,19 +209,31 @@ button {
     cursor: default;
 }
 .list table tr th, .mylist table tr th {
-    width: 17%;
-    font-size: 1.3em;
+    font-size: 12px;
     border-bottom: 3px solid #20366b;
     padding: 4px 0;
 }
-.list table tr th:nth-child(3), .mylist table tr th:nth-child(4){
-    width: 32%;
+.list table tr th:nth-child(1) {
+    width: 17%;
+}
+.list table tr th:nth-child(2) {
+    width: 29%;
+}
+.list table tr th:nth-child(3) {
+    width: 26%;
+}
+.list table tr th:nth-child(4) {
+    width: 17%;
+}
+.list table tr th:nth-child(5) {
+    width: 15%;
 }
 .list table tr td, .mylist table tr td {
     text-align: right;
     font-size: 1.2em;
     border-bottom: 1px solid #20366b;
     padding: 4px 0;
+    word-break: keep-all;
 }
 .list table tr td:nth-child(1), 
 .list table tr td:nth-child(2),

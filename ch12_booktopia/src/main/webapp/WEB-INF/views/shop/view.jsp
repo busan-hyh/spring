@@ -197,7 +197,7 @@
             <div class="tab_content" id="tab1" style="display: block;">
               <h4>책소개</h4>
               <p>${ view.GOODS_INTRO }</p>
-              <img src="/booktopia/resource/detail.jpg">
+              <img src="/booktopia/resource/${ view.GOODS_ID }/">
             </div>
             <div class="tab_content" id="tab2" style="display: none;">
               <h4>저자소개</h4>

@@ -1,6 +1,7 @@
 package kr.co.booktopia.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -15,13 +16,7 @@ public class MainDAO {
 	@Inject
 	private SqlSessionTemplate mybatis;
 	
-	public List<ListVO> indexBestseller() {
-		return mybatis.selectList("mapper.main_sql.SELECT_BESTSELLER");
-	}
-	public List<ListVO> indexNewbook() {
-		return mybatis.selectList("mapper.main_sql.SELECT_NEW");
-	}
-	public List<ListVO> indexSteadyseller() {
-		return mybatis.selectList("mapper.main_sql.SELECT_STEADYSELLER");
+	public List<ListVO> selectGoodsList(String goodsStatus) {
+		return mybatis.selectList("mapper.main_sql.SELECT_GOODSLIST", goodsStatus);
 	}
 }

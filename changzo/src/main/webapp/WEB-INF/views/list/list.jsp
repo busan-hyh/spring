@@ -1,19 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><!-- 매매/전세/월세/임대 --> 리스트</title>
+    <title>${ list.key } 리스트</title>
     <link rel="stylesheet" href="/cz/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="wrapper">
         <div class="listheader">
-            <h2><!-- 매매/전세/월세/임대 --> 리스트</h2>
+            <a href="/cz/"><h2>${ list.key } 리스트</h2></a>
             <select name="gu" id="gu" onchange="changeDong(this)">
                 <option value="전체구">전체 구</option>
                 <option value="중구">중구</option>
@@ -41,42 +42,74 @@
         </div>
         <div class="list">
             <table>
+            	<!-- 매매 -->
+            	<c:if test="${ list.key == '매매' }">
                 <tr>
                     <th>종류</th>
                     <th>주소</th>
                     <th colspan="2">크기</th>
-                    <!-- 분기시작 -->
-                    <!-- 매매 -->
-                    <th>층수</th>
                     <th>매매금</th>
-                    <!-- 전세 -->
+                    <th>층수</th>
+                </tr>
+                <c:forEach var="vo" items="${ list.map }">
+                <tr>
+                    <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
+                    </td>
+                    <td>${ vo.gu } ${ vo.dong }</td>
+                    <td><fmt:parseNumber value="${ vo.scale_meter }" integerOnly="true" />㎡</td>
+                    <td><fmt:parseNumber value="${ vo.scale_pyung }" integerOnly="true" />평</td>
+                    <td>${ vo.sale_money_int*vo.sale_money_unit }</td>
+                    <td><c:if test="${ vo.up_floor != 0 }">
+                    ${ vo.up_floor }층</c:if></td>
+                </tr>
+                </c:forEach>
+                </c:if>
+                
+                <!-- 전세 -->
+                <c:if test="${ list.key == '전세' }">
+                <tr>
+                    <th>종류</th>
+                    <th>주소</th>
+                    <th colspan="2">크기</th>
                     <th>전세금</th>
                     <th>관리비</th>
-                    <!-- 월세,임대 -->
+                </tr>
+                <c:forEach var="vo" items="${ list.map }">
+                <tr>
+                    <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
+                    </td>
+                    <td>${ vo.gu } ${ vo.dong }</td>
+                    <td><fmt:parseNumber value="${ vo.scale_meter }" integerOnly="true" />㎡</td>
+                    <td><fmt:parseNumber value="${ vo.scale_pyung }" integerOnly="true" />평</td>
+                    <td>${ vo.jeonse_money_int*vo.jeonse_money_unit }</td>
+                    <td>${ vo.jeonse_seqr_money }</td>
+                </tr>
+                </c:forEach>
+                </c:if>
+                
+                
+                <!-- 월세,임대 -->
+                <c:if test="${ list.key == '월세' || list.key == '임대' }">
+                <tr>
+                    <th>종류</th>
+                    <th>주소</th>
+                    <th colspan="2">크기</th>
                     <th>보증금</th>
                     <th>월세</th>
-                    <!-- 분기끝 -->
                 </tr>
+                <c:forEach var="vo" items="${ list.map }">
                 <tr>
-                    <td><input type="hidden" name="seq" value="2">
-                        <input type="hidden" name="case" value="sale">
-                        아파트</td>
-                    <td>남부민동</td>
-                    <td>138.84㎡</td>
-                    <td>42평</td>
-                    <td>2층</td>
-                    <td>3억</td>
+                    <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
+                    </td>
+                    <td>${ vo.gu } ${ vo.dong }</td>
+                    <td><fmt:parseNumber value="${ vo.scale_meter }" integerOnly="true" />㎡</td>
+                    <td><fmt:parseNumber value="${ vo.scale_pyung }" integerOnly="true" />평</td>
+                    <td>${ vo.rent_save_int*vo.rent_save_unit }</td>
+                    <td>${ vo.rent_int*vo.rent_unit }</td>
                 </tr>
-                <tr>
-                    <td><input type="hidden" name="seq" value="3">
-                        <input type="hidden" name="case" value="sale">
-                        상가</td>
-                    <td>토성동</td>
-                    <td>211.57㎡</td>
-                    <td>64평</td>
-                    <td>3층</td>
-                    <td>6억7천</td>
-                </tr>
+                </c:forEach>
+                </c:if>
+                
             </table>
         </div>
     </div>

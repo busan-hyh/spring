@@ -13,7 +13,7 @@
 <body>
     <div class="wrapper">
         <div class="listheader">
-            <h2>내 리스트</h2>
+            <a href="/cz/"><h2>내 리스트</h2></a>
             <select name="case" id="case">
                 <option>전체</option>
                 <option value="매매">매매</option>

@@ -1,6 +1,8 @@
 package kr.co.booktopia.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,18 +18,20 @@ public class MainServiceImpl implements MainService {
 	private MainDAO dao;
 	
 	@Override
-	public List<ListVO> indexBestseller() {
-		return dao.indexBestseller();
-	}
-
-	@Override
-	public List<ListVO> indexNewbook() {
-		return dao.indexNewbook();
-	}
-
-	@Override
-	public List<ListVO> indexSteadyseller() {
-		return dao.indexSteadyseller();
+	public Map<String, List<ListVO>> listGoods() {
+		
+		Map<String, List<ListVO>> goodsMap = new HashMap<String, List<ListVO>>();
+		
+		List<ListVO> goodsList = dao.selectGoodsList("bestseller");
+		goodsMap.put("bestseller", goodsList);
+		
+		goodsList = dao.selectGoodsList("newbook");
+		goodsMap.put("newbook", goodsList);
+		
+		goodsList = dao.selectGoodsList("steadyseller");
+		goodsMap.put("steadyseller", goodsList);
+		
+		return goodsMap;
 	}
 
 }
