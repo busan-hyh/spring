@@ -17,15 +17,17 @@
             <a href="/cz/"><h2>내 리스트</h2></a>
             <input type="hidden" id="paramList" value="mylist" />
             <input type="hidden" id="paramGu" value="${ param.gu }" />
+            <input type="hidden" id="paramCase_of" value="${ param.case_of }" />
+            <input type="hidden" id="paramKind_of" value="${ param.kind_of }" />
             <select name="case" id="case_of">
-                <option>전체</option>
+                <option value="전체">전체</option>
                 <option value="매매">매매</option>
                 <option value="전세">전세</option>
                 <option value="월세">월세</option>
                 <option value="임대">임대</option>
             </select>
             <select name="kind_of" id="kind_of">
-                <option>전체</option>
+                <option value="전체">전체</option>
                 <option value="빌딩">빌딩</option>
                 <option value="상가">상가</option>
                 <option value="상가주택">상가주택</option>
@@ -35,7 +37,7 @@
                 <option value="토지">토지</option>
             </select>
             <select name="gu" id="gu">
-                <option>전체 구</option>
+                <option value="전체구">전체 구</option>
                 <option value="중구">중구</option>
                 <option value="서구">서구</option>
                 <option value="동구">동구</option>
@@ -53,7 +55,7 @@
                 <option value="사상구">사상구</option>
                 <option value="기장군">기장군</option>
             </select>
-            <a href="#"><input class="veiwAll" type="button" value="전체"></a>
+            <a href="/cz/mylist"><input class="veiwAll" type="button" value="전체"></a>
         </div>
         <div class="mylist">
             <table id="sortList" class="tablesorter">
@@ -67,18 +69,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                
+                <c:forEach var="vo" items="${ mylist }">
                 <tr>
-                    <td><input type="hidden" name="seq" value="2">
-                        <input type="hidden" name="case" value="sale">
-                        매매</td>
-                    <td>아파트</td>
-                    <td>남부민동</td>
-                    <td>138.84㎡</td>
-                    <td>42평</td>
-                    <td>3억</td>
+                    <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.case_of }
+                    </td>
+                    <td>${ vo.kind_of }</td>
+                    <td>${ vo.gu } ${ vo.dong }</td>
+                    <td>${ vo.scale_pyung }</td>
+                    <td>평</td>
+                    <c:if test="${ vo.case_of == '매매' }"><td>${ vo.sale_money_int*vo.sale_money_unit }</td></c:if>
+                    <c:if test="${ vo.case_of == '전세' }"><td>${ vo.jeonse_money_int*vo.jeonse_money_unit }</td></c:if>
+                    <c:if test="${ vo.case_of == '월세' || vo.case_of == '임대' }"><td>${ vo.rent_int*vo.rent_unit }</td></c:if>
                 </tr>
-                
+                </c:forEach>
                 </tbody>
                 
             </table>

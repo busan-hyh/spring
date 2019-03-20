@@ -11,3 +11,10 @@ $(document).ready(function(){
     $('.sMeter3').next('span').text(' ㎡ = '+(sMeter3*0.3025).toFixed(2)+' 평');
 
 })
+
+// 내물건 view에서 보이지 않는 테이블 mydetail 클릭시 보이기
+$('.mydetail_view').on('click', function(){
+	var span = $(this).children('td:last');
+	span.css('color','black');
+	console.log(span.text());
+})

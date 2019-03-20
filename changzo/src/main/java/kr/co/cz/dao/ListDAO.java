@@ -26,4 +26,11 @@ public class ListDAO {
 	public List<ItemVO> guSerch(Map<String, String> map) {
 		return mybatis.selectList("mapper.list_sql.SELECT_GU", map);
 	}
+	
+	public List<ItemVO> mylist(String uid) {
+		return mybatis.selectList("mapper.list_sql.SELECT_MYLIST", uid);
+	}
+	public List<ItemVO> mySearch(Map<String, String> map) {
+		return mybatis.selectList("mapper.list_sql.SELECT_SEARCH_MYLIST", map);
+	}
 }

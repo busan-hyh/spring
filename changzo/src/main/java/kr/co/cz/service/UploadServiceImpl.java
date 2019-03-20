@@ -1,5 +1,7 @@
 package kr.co.cz.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -22,6 +24,11 @@ public class UploadServiceImpl implements UploadService {
 	@Override
 	public void upload(ItemVO vo) {
 		dao.upload(vo);
+	}
+
+	@Override
+	public List<ItemVO> modify(String seq) {
+		return null;
 	}
 
 

@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,23 +29,29 @@ public class UploadController {
 	}
 	
 	@RequestMapping(value="/upload", method=RequestMethod.GET)
-	public String upload() {
+	public String upload(HttpSession sess, Model model) {
+		UserVO user = (UserVO) sess.getAttribute("user");
+		model.addAttribute("name", user.getName());
+		model.addAttribute("hp", user.getHp());
+		
 		return "/upload/upload";
 	}
 	@RequestMapping(value="/upload", method=RequestMethod.POST)
 	public String upload(ItemVO vo, HttpSession sess) {
-//		UserVO user = (UserVO) sess.getAttribute("user");
-//		vo.setUid(user.getUid());
+		UserVO user = (UserVO) sess.getAttribute("user");
 		
 		vo.setIng("1");
-		vo.setUid("test");
+		vo.setUid(user.getUid());
 		service.upload(vo);
 		
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/modify")
-	public String modify() {
-		return "/upload/modify";
+	// modify view는 ListController에 있음
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	public String modify(String seq, HttpSession sess, ItemVO vo) {
+		UserVO user = (UserVO) sess.getAttribute("user");
+		
+		return "redirect:/mylist";
 	}
 }

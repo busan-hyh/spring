@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.list_sql">
 	<select id="SELECT_LIST" resultType="kr.co.cz.vo.ItemVO">
-		SELECT seq,uid,ing,case_of,kind_of, gu, dong, scale_meter, scale_pyung,
+		SELECT seq, uid, ing, case_of, kind_of, gu, dong, scale_meter, scale_pyung,
 				sale_money_int, sale_money_unit, up_floor,  jeonse_money_int, 
 				jeonse_money_unit, rent_save_int, rent_save_unit, rent_int, rent_unit
 		FROM `CZ_ITEMS` WHERE `case_of`=#{case_of}
@@ -12,6 +12,29 @@
 		SELECT * FROM `CZ_ITEMS` WHERE `seq`=#{seq}
 	</select>
 	<select id="SELECT_GU" resultType="kr.co.cz.vo.ItemVO" parameterType="hashMap">
-		SELECT * FROM `CZ_ITEMS` WHERE case_of=#{case_of} AND gu=#{gu}
+		SELECT seq, uid, ing, case_of, kind_of, gu, dong, scale_meter, scale_pyung,
+				sale_money_int, sale_money_unit, up_floor,  jeonse_money_int, 
+				jeonse_money_unit, rent_save_int, rent_save_unit, rent_int, rent_unit
+		FROM `CZ_ITEMS` 
+		WHERE case_of=#{case_of} 
+			AND (kind_of =#{kind_of} OR #{kind_of} = '') 
+			AND (gu =#{gu} OR #{gu} = '') 
+	</select>
+	<select id="SELECT_MYLIST" resultType="kr.co.cz.vo.ItemVO">
+		SELECT seq, uid, ing, case_of, kind_of, gu, dong, scale_meter, scale_pyung,
+				sale_money_int, sale_money_unit, up_floor,  jeonse_money_int, 
+				jeonse_money_unit, rent_save_int, rent_save_unit, rent_int, rent_unit
+		FROM `CZ_ITEMS` WHERE `uid`=#{uid}
+		ORDER BY seq DESC 
+	</select>
+	<select id="SELECT_SEARCH_MYLIST" resultType="kr.co.cz.vo.ItemVO" parameterType="hashMap">
+		SELECT seq, uid, ing, case_of, kind_of, gu, dong, scale_meter, scale_pyung,
+				sale_money_int, sale_money_unit, up_floor,  jeonse_money_int, 
+				jeonse_money_unit, rent_save_int, rent_save_unit, rent_int, rent_unit
+		FROM `CZ_ITEMS` 
+		WHERE (case_of = #{case_of} OR #{case_of} = '') 
+			AND (kind_of =#{kind_of} OR #{kind_of} = '') 
+			AND (gu =#{gu} OR #{gu} = '') 
+			AND uid=#{uid}
 	</select>
 </mapper>

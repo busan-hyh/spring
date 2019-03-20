@@ -18,6 +18,17 @@
             <a href="/cz/"><h2><span>${ list.key }</span> 리스트</h2></a>
             <input type="hidden" id="paramList" value="list" />
             <input type="hidden" id="paramGu" value="${ param.gu }" />
+            <input type="hidden" id="paramKind_of" value="${ param.kind_of }" />
+            <select name="kind_of" id="kind_of">
+                <option value="전체">전체</option>
+                <option value="빌딩">빌딩</option>
+                <option value="상가">상가</option>
+                <option value="상가주택">상가주택</option>
+                <option value="주택">주택</option>
+                <option value="아파트">아파트</option>
+                <option value="빌라">빌라</option>
+                <option value="토지">토지</option>
+            </select>
             <select name="gu" id="gu">
                 <option value="전체구">전체 구</option>
                 <option value="중구">중구</option>
@@ -61,8 +72,8 @@
                     <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
                     </td>
                     <td>${ vo.gu } ${ vo.dong }</td>
-                    <td><fmt:parseNumber value="${ vo.scale_meter }" integerOnly="true" />㎡</td>
-                    <td><fmt:parseNumber value="${ vo.scale_pyung }" integerOnly="true" />평</td>
+                    <td><fmt:parseNumber value="${ vo.scale_pyung }" integerOnly="true" /></td>
+                    <td>평</td>
                     <td>${ vo.sale_money_int*vo.sale_money_unit }</td>
                     <td><c:if test="${ vo.up_floor != 0 }">
                     ${ vo.up_floor }층</c:if></td>
@@ -89,8 +100,8 @@
                     <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
                     </td>
                     <td>${ vo.gu } ${ vo.dong }</td>
-                    <td><fmt:parseNumber value="${ vo.scale_meter }" integerOnly="true" />㎡</td>
-                    <td><fmt:parseNumber value="${ vo.scale_pyung }" integerOnly="true" />평</td>
+                    <td><fmt:parseNumber value="${ vo.scale_pyung }" integerOnly="true" /></td>
+                    <td>평</td>
                     <td>${ vo.jeonse_money_int*vo.jeonse_money_unit }</td>
                     <td><c:if test="${ vo.jeonse_seqr_money != 0 }">${ vo.jeonse_seqr_money }</c:if></td>
                 </tr>
@@ -116,8 +127,8 @@
                     <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
                     </td>
                     <td>${ vo.gu } ${ vo.dong }</td>
-                    <td><fmt:parseNumber value="${ vo.scale_meter }" integerOnly="true" />㎡</td>
-                    <td><fmt:parseNumber value="${ vo.scale_pyung }" integerOnly="true" />평</td>
+                    <td><fmt:parseNumber value="${ vo.scale_pyung }" integerOnly="true" /></td>
+                    <td>평</td>
                     <td>${ vo.rent_save_int*vo.rent_save_unit }</td>
                     <td>${ vo.rent_int*vo.rent_unit }</td>
                 </tr>

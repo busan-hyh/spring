@@ -39,12 +39,14 @@
                 <td>주소</td>
                 <td>${ view.gu } ${ view.dong }</td>
             </tr>
-            <!-- 본인인 경우 시작
-            <tr>
+            <!-- 본인인 경우 -->
+            <c:if test="${ uid == view.uid }">
+            <tr class="mydetail_view">
                 <td>상세주소</td>
-                <td>자갈치로 2</td>
+                <td>${ view.detail_addr }</td>
             </tr>
-            	본인인 경우 끝 -->
+            </c:if>
+            <!-- 본인인 경우 끝 -->
             <tr>
                 <td>크기</td>
                 <td><span class="sMeter0">${ view.scale_meter }</span><span></span></td> 
@@ -155,25 +157,29 @@
                 <td>${ view.mng2_name } ${ view.mng2_hp }</td>
             </tr>
             </c:if>
-            <!-- 본인인 경우 시작
-            <tr>
+            <!-- 본인인 경우 -->
+            <c:if test="${ uid == view.uid }">
+            <tr class="mydetail_view">
                 <td><c:if test="${ view.slr1_kind == 2 }">명의자</c:if>
                 <c:if test="${ view.slr1_kind == 3 }">관리자</c:if></td>
                 <td>${ view.slr1_name } ${ view.slr1_hp }</td>
             </tr>
             <c:if test="${ view.slr2_kind != null }">
-            <tr>
+            <tr class="mydetail_view">
                 <td><c:if test="${ view.slr2_kind == 2 }">명의자</c:if>
                 <c:if test="${ view.slr2_kind == 3 }">관리자</c:if></td>
                 <td>${ view.slr2_name } ${ view.slr2_hp }</td>
             </tr>
             </c:if>
-             	본인인 경우 끝 -->
+            </c:if>
+            <!-- 본인인 경우 끝 -->
         </table>
         <button onclick="history.back(-1);">뒤로가기</button>
-        <!-- 본인인 경우 시작
-        <a href="#"><input type="button" value="수정하기"></a>
-        	본인인 경우 끝 -->
+        <!-- 본인인 경우 -->
+        <c:if test="${ uid == view.uid }">
+        <a href="/cz/modify?seq=${ view.seq }"><input type="button" value="수정하기"></a>
+        </c:if>
+        <!-- 본인인 경우 끝 -->
     </div>
     </div>
     <script src="/cz/js/itemview.js"></script>

@@ -193,8 +193,8 @@
                 <table id="connect">
                     <tr>
                         <td><input type="hidden" name="mng1_kind" value="1">담당자</td></td>
-                        <td><input type="text" name="mng1_name" value="홍길동"></td>
-                        <td><input type="text" name="mng1_hp" value="010-0238-4784"></td>
+                        <td><input type="text" name="mng1_name" value="${ name }"></td>
+                        <td><input type="text" name="mng1_hp" value="${ hp }"></td>
                         <td><input id="managerPlus" type="button" value="+" /></td>
                     </tr>
                     <tr>
