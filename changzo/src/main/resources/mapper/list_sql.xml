@@ -11,4 +11,7 @@
 	<select id="SELECT_VIEW" resultType="kr.co.cz.vo.ItemVO">
 		SELECT * FROM `CZ_ITEMS` WHERE `seq`=#{seq}
 	</select>
+	<select id="SELECT_GU" resultType="kr.co.cz.vo.ItemVO" parameterType="hashMap">
+		SELECT * FROM `CZ_ITEMS` WHERE case_of=#{case_of} AND gu=#{gu}
+	</select>
 </mapper>

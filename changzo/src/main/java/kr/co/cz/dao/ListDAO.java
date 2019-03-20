@@ -1,6 +1,7 @@
 package kr.co.cz.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -20,5 +21,9 @@ public class ListDAO {
 	}
 	public ItemVO view(String seq) {
 		return mybatis.selectOne("mapper.list_sql.SELECT_VIEW", seq);
+	}
+	
+	public List<ItemVO> guSerch(Map<String, String> map) {
+		return mybatis.selectList("mapper.list_sql.SELECT_GU", map);
 	}
 }

@@ -9,19 +9,22 @@
     <title>내 리스트</title>
     <link rel="stylesheet" href="/cz/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/cz/js/jquery.tablesorter.min.js"></script>
 </head>
 <body>
     <div class="wrapper">
         <div class="listheader">
             <a href="/cz/"><h2>내 리스트</h2></a>
-            <select name="case" id="case">
+            <input type="hidden" id="paramList" value="mylist" />
+            <input type="hidden" id="paramGu" value="${ param.gu }" />
+            <select name="case" id="case_of">
                 <option>전체</option>
                 <option value="매매">매매</option>
                 <option value="전세">전세</option>
                 <option value="월세">월세</option>
                 <option value="임대">임대</option>
             </select>
-            <select name="kindOf" id="kindOf">
+            <select name="kind_of" id="kind_of">
                 <option>전체</option>
                 <option value="빌딩">빌딩</option>
                 <option value="상가">상가</option>
@@ -31,7 +34,7 @@
                 <option value="빌라">빌라</option>
                 <option value="토지">토지</option>
             </select>
-            <select name="gu" id="gu" onchange="changeDong(this)">
+            <select name="gu" id="gu">
                 <option>전체 구</option>
                 <option value="중구">중구</option>
                 <option value="서구">서구</option>
@@ -50,13 +53,11 @@
                 <option value="사상구">사상구</option>
                 <option value="기장군">기장군</option>
             </select>
-            <select name="dong" id="dong">
-                <option>전체 동</option>
-            </select>
             <a href="#"><input class="veiwAll" type="button" value="전체"></a>
         </div>
         <div class="mylist">
-            <table>
+            <table id="sortList" class="tablesorter">
+            	<thead>
                 <tr>
                     <th>유형</th>
                     <th>종류</th>
@@ -64,6 +65,9 @@
                     <th colspan="2">크기</th>
                     <th>가격</th>
                 </tr>
+                </thead>
+                <tbody>
+                
                 <tr>
                     <td><input type="hidden" name="seq" value="2">
                         <input type="hidden" name="case" value="sale">
@@ -74,20 +78,13 @@
                     <td>42평</td>
                     <td>3억</td>
                 </tr>
-                <tr>
-                    <td><input type="hidden" name="seq" value="3">
-                        <input type="hidden" name="case" value="sale">
-                        임대</td>
-                    <td>상가</td>
-                    <td>토성동</td>
-                    <td>211.57㎡</td>
-                    <td>64평</td>
-                    <td>3백</td>
-                </tr>
+                
+                </tbody>
+                
             </table>
         </div>
     </div>
     <script src="/cz/js/dongSelector.js"></script>
-    <script src="/cz/js/itemview.js"></script>
+    <script src="/cz/js/itemlist.js"></script>
 </body>
 </html>

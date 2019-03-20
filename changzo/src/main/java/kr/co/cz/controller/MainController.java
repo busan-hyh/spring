@@ -16,14 +16,24 @@ public class MainController {
 	@Inject
 	private MainService service;
 	
-	@RequestMapping(value= {"","/", "/index"})
-	public String index() {
-		return "/index";
+	@RequestMapping(value= {"","/", "/index"}, method=RequestMethod.GET)
+	public String index(HttpSession sess) {
+		UserVO user = (UserVO) sess.getAttribute("user");
+		if(user != null) {
+			return "/index";
+		} else {
+			return "/login";
+		}
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String login() {
-		return "/login";
+	public String login(HttpSession sess) {
+		UserVO user = (UserVO) sess.getAttribute("user");
+		if(user != null) {
+			return "redirect:/";
+		} else {
+			return "/login";
+		}
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(UserVO vo, HttpSession sess) {

@@ -10,12 +10,15 @@
     <title>${ list.key } 리스트</title>
     <link rel="stylesheet" href="/cz/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/cz/js/jquery.tablesorter.min.js"></script>
 </head>
 <body>
     <div class="wrapper">
         <div class="listheader">
-            <a href="/cz/"><h2>${ list.key } 리스트</h2></a>
-            <select name="gu" id="gu" onchange="changeDong(this)">
+            <a href="/cz/"><h2><span>${ list.key }</span> 리스트</h2></a>
+            <input type="hidden" id="paramList" value="list" />
+            <input type="hidden" id="paramGu" value="${ param.gu }" />
+            <select name="gu" id="gu">
                 <option value="전체구">전체 구</option>
                 <option value="중구">중구</option>
                 <option value="서구">서구</option>
@@ -34,16 +37,15 @@
                 <option value="사상구">사상구</option>
                 <option value="기장군">기장군</option>
             </select>
-            <select name="dong" id="dong">
-                <option value="전체동">전체 동</option>
-            </select>
-            <button value="orderPrice">가격 정렬</button>
-            <button value="orderPyung">평수 정렬</button>
+            
+            <button id="orderPrice">가격 정렬</button>
+            <button id="orderPyung">평수 정렬</button>
         </div>
         <div class="list">
-            <table>
+            <table id="sortList" class="tablesorter">
             	<!-- 매매 -->
             	<c:if test="${ list.key == '매매' }">
+            	<thead>
                 <tr>
                     <th>종류</th>
                     <th>주소</th>
@@ -51,6 +53,9 @@
                     <th>매매금</th>
                     <th>층수</th>
                 </tr>
+                </thead>
+                
+                <tbody>
                 <c:forEach var="vo" items="${ list.map }">
                 <tr>
                     <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
@@ -63,10 +68,13 @@
                     ${ vo.up_floor }층</c:if></td>
                 </tr>
                 </c:forEach>
+                </tbody>
                 </c:if>
+                
                 
                 <!-- 전세 -->
                 <c:if test="${ list.key == '전세' }">
+                <thead>
                 <tr>
                     <th>종류</th>
                     <th>주소</th>
@@ -74,6 +82,8 @@
                     <th>전세금</th>
                     <th>관리비</th>
                 </tr>
+                </thead>
+                <tbody>
                 <c:forEach var="vo" items="${ list.map }">
                 <tr>
                     <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
@@ -82,14 +92,16 @@
                     <td><fmt:parseNumber value="${ vo.scale_meter }" integerOnly="true" />㎡</td>
                     <td><fmt:parseNumber value="${ vo.scale_pyung }" integerOnly="true" />평</td>
                     <td>${ vo.jeonse_money_int*vo.jeonse_money_unit }</td>
-                    <td>${ vo.jeonse_seqr_money }</td>
+                    <td><c:if test="${ vo.jeonse_seqr_money != 0 }">${ vo.jeonse_seqr_money }</c:if></td>
                 </tr>
                 </c:forEach>
+                </tbody>
                 </c:if>
                 
                 
                 <!-- 월세,임대 -->
                 <c:if test="${ list.key == '월세' || list.key == '임대' }">
+                <thead>
                 <tr>
                     <th>종류</th>
                     <th>주소</th>
@@ -97,6 +109,8 @@
                     <th>보증금</th>
                     <th>월세</th>
                 </tr>
+                </thead>
+                <tbody>
                 <c:forEach var="vo" items="${ list.map }">
                 <tr>
                     <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
@@ -108,12 +122,12 @@
                     <td>${ vo.rent_int*vo.rent_unit }</td>
                 </tr>
                 </c:forEach>
+                </tbody>
                 </c:if>
                 
             </table>
         </div>
     </div>
-    <script src="/cz/js/dongSelector.js"></script>
-    <script src="/cz/js/itemview.js"></script>
+    <script src="/cz/js/itemlist.js"></script>
 </body>
 </html>

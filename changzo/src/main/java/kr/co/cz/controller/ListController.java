@@ -42,4 +42,18 @@ public class ListController {
 		return "/list/view";
 	}
 	
+	@RequestMapping(value="/guSerch")
+	public String guSerch(String paramList, String case_of, String gu, Model model) {
+		
+		List<ItemVO> list = service.guSerch(case_of, gu);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("key", case_of);
+		map.put("map", list);
+		model.addAttribute("list", map);
+		
+		return "/list/"+paramList;
+	}
+	
+	
+	
 }

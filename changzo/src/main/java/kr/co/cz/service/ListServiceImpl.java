@@ -1,6 +1,8 @@
 package kr.co.cz.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -25,5 +27,15 @@ public class ListServiceImpl implements ListService {
 	public ItemVO view(String seq) {
 		return dao.view(seq);
 	}
+
+	@Override
+	public List<ItemVO> guSerch(String case_of, String gu) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("case_of", case_of);
+		map.put("gu", gu);
+		
+		return dao.guSerch(map);
+	}
+
 
 }

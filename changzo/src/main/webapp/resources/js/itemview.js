@@ -1,16 +1,3 @@
-// list to view 셀렉터
-$(document).on('click','.list tr',function(){
-    var seq = $(this).children('td').children('input[name=seq]').val();
-    console.log(seq);
-    location.href = '/cz/view?seq='+seq;
-})
-// mylist to view 셀렉터
-$(document).on('click','.mylist tr',function(){
-    var seq = $(this).children('td').children('input[name=seq]').val();
-    
-    location.href = '/cz/view?seq='+seq;
-})
-
 // 제곱미터 to 평형
 $(document).ready(function(){
     var sMeter0 = $('.sMeter0').text();
