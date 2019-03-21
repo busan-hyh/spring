@@ -26,7 +26,7 @@
 				sale_money_int, sale_money_unit, up_floor,  jeonse_money_int, 
 				jeonse_money_unit, rent_save_int, rent_save_unit, rent_int, rent_unit
 		FROM `CZ_ITEMS` WHERE `uid`=#{uid}
-		ORDER BY seq DESC 
+		ORDER BY `ing` ASC, seq DESC 
 	</select>
 	<select id="SELECT_SEARCH_MYLIST" resultType="kr.co.cz.vo.ItemVO" parameterType="hashMap">
 		SELECT seq, uid, ing, case_of, kind_of, gu, dong, scale_meter, scale_pyung,

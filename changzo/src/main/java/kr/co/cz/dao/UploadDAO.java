@@ -1,5 +1,8 @@
 package kr.co.cz.dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -24,5 +27,15 @@ public class UploadDAO {
 	
 	public void modify(ItemVO vo) {
 		mybatis.update("mapper.upload_sql.UPDATE_ITEM", vo);
+	}
+	
+	public Map<String, Object> usercheck(String uid) {
+		int count = 0;
+        Map<String, Object> data = new HashMap<String, Object>();
+		
+        count = mybatis.selectOne("mapper.upload_sql.SELECT_UID_COUNT", uid);
+        data.put("result",count);
+        
+		return data;
 	}
 }

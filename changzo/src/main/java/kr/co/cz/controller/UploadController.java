@@ -1,5 +1,7 @@
 package kr.co.cz.controller;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.cz.service.UploadService;
 import kr.co.cz.vo.ItemVO;
@@ -68,12 +72,18 @@ public class UploadController {
 	
 	// modify view는 ListController에 있음
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String modify(String seq, ItemVO vo) {
-		
-		vo.setSeq(seq);
+	public String modify(ItemVO vo) {
 		
 		service.modify(vo);
 		
 		return "redirect:/mylist";
+	}
+	
+	@RequestMapping(value="/usercheck", method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> usercheck(@RequestParam("uid") String uid) {
+		Map<String, Object> data = service.usercheck(uid);
+
+		return data;
 	}
 }

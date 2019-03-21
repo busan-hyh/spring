@@ -1,6 +1,8 @@
 package kr.co.cz.service;
 
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -28,6 +30,11 @@ public class UploadServiceImpl implements UploadService {
 	@Override
 	public void modify(ItemVO vo) {
 		dao.modify(vo);
+	}
+
+	@Override
+	public Map<String, Object> usercheck(String uid) {
+		return dao.usercheck(uid);
 	}
 
 
