@@ -120,14 +120,12 @@ a:hover, a:active, a:focus { text-decoration:none; }
     height: 30px;
     font-size: 1em;
 }
-.uploadrCard #uploadSubmit {
-    font-size: 1.5em;
+#uploadSubmit {
     float: right;
     width: 67px;
     height: 38px;
 }
-.uploadrCard #uploadCancle {
-    font-size: 1.5em;
+#uploadCancle {
     float: left;
     width: 67px;
     height: 38px;

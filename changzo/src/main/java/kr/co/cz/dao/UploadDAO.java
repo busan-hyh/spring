@@ -1,7 +1,5 @@
 package kr.co.cz.dao;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -24,7 +22,7 @@ public class UploadDAO {
 		mybatis.insert("mapper.upload_sql.INSERT_ITEM", vo);
 	}
 	
-	public List<ItemVO> modify(String seq) {
-		return null;
+	public void modify(ItemVO vo) {
+		mybatis.update("mapper.upload_sql.UPDATE_ITEM", vo);
 	}
 }

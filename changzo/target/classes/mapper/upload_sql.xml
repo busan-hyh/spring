@@ -31,10 +31,10 @@
 	</insert>
 	<update id="UPDATE_ITEM">
 		UPDATE `CZ_ITEMS` 
-		SET `uid`=#{uid}, `ing`=#{ing}, `case_of`=#{case_of}, 
+		SET `ing`=#{ing}, `case_of`=#{case_of}, 
 			`kind_of`=#{kind_of}, `gu`=#{gu}, `dong`=#{dong}, `detail_addr`=#{detail_addr}, `scale_meter`=#{scale_meter}, `scale_pyung`=#{scale_pyung}, 
 			`memo`=#{memo}, `sale_money_int`=#{sale_money_int}, `sale_money_unit`=#{sale_money_unit}, `sale_jeonse_money_int`=#{sale_jeonse_money_int}, 
-			`sale_jeonse_money_unit=#{sale_jeonse_money_unit}`, `sale_rend_money`=#{sale_rend_money}, `up_floor`=#{up_floor}, `down_floor`=#{down_floor}, 
+			`sale_jeonse_money_unit`=#{sale_jeonse_money_unit}, `sale_rend_money`=#{sale_rend_money}, `up_floor`=#{up_floor}, `down_floor`=#{down_floor}, 
 			`scale_toji`=#{scale_toji}, `scale_yeon`=#{scale_yeon}, `scale_gun`=#{scale_gun}, `jeonse_money_int`=#{jeonse_money_int}, 
 			`jeonse_money_unit`=#{jeonse_money_unit}, `jeonse_seqr_money`=#{jeonse_seqr_money}, `jeonse_rend_money`=#{jeonse_rend_money}, `rent_save_int`=#{rent_save_int}, 
 			`rent_save_unit`=#{rent_save_unit}, `rent_int`=#{rent_int}, `rent_unit`=#{rent_unit}, `rent_seqr_money`=#{rent_seqr_money}, `rent_rend_money`=#{rent_rend_money}, 

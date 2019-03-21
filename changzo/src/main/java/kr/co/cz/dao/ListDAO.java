@@ -23,7 +23,7 @@ public class ListDAO {
 		return mybatis.selectOne("mapper.list_sql.SELECT_VIEW", seq);
 	}
 	
-	public List<ItemVO> guSerch(Map<String, String> map) {
+	public List<ItemVO> guSearch(Map<String, String> map) {
 		return mybatis.selectList("mapper.list_sql.SELECT_GU", map);
 	}
 	

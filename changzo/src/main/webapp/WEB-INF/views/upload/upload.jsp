@@ -30,7 +30,7 @@
                     </tr>
                     <tr>
                         <td>종류</td>
-                        <td colspan="2"><select name="kind_of" id="kindOf">
+                        <td colspan="2"><select name="kind_of" id="kind_of">
                             <option value="빌딩">빌딩</option>
                             <option value="상가">상가</option>
                             <option value="상가주택">상가주택</option>

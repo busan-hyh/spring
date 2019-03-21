@@ -39,7 +39,7 @@ $('#gu').on('change', function(){
 		if(gu == '전체구'){
 			gu = '';
 		}
-		location.replace('/cz/guSerch?case_of='+case_of+'&kind_of='+kind_of+'&gu='+gu);
+		location.replace('/cz/guSearch?case_of='+case_of+'&kind_of='+kind_of+'&gu='+gu);
 		
 	} else {
 		// mylist에서 검색하는 경우(case_of, kind_of, gu 세개로 검색)
@@ -76,7 +76,7 @@ $('#kind_of').on('change', function(){
 		if(gu == '전체구'){
 			gu = '';
 		}
-		location.replace('/cz/guSerch?case_of='+case_of+'&kind_of='+kind_of+'&gu='+gu);
+		location.replace('/cz/guSearch?case_of='+case_of+'&kind_of='+kind_of+'&gu='+gu);
 	} else {
 		// mylist에서 선택
 		var case_of = $('#case_of').val();

@@ -40,7 +40,7 @@
                 <td>${ view.gu } ${ view.dong }</td>
             </tr>
             <!-- 본인인 경우 -->
-            <c:if test="${ uid == view.uid }">
+            <c:if test="${ uid == view.uid || uid == 'changzo' }">
             <tr class="mydetail_view">
                 <td>상세주소</td>
                 <td>${ view.detail_addr }</td>
@@ -158,7 +158,7 @@
             </tr>
             </c:if>
             <!-- 본인인 경우 -->
-            <c:if test="${ uid == view.uid }">
+            <c:if test="${ uid == view.uid || uid == 'changzo' }">
             <tr class="mydetail_view">
                 <td><c:if test="${ view.slr1_kind == 2 }">명의자</c:if>
                 <c:if test="${ view.slr1_kind == 3 }">관리자</c:if></td>
@@ -174,10 +174,10 @@
             </c:if>
             <!-- 본인인 경우 끝 -->
         </table>
-        <button onclick="history.back(-1);">뒤로가기</button>
+        <button id="uploadSubmit" onclick="history.back(-1);">뒤로가기</button>
         <!-- 본인인 경우 -->
         <c:if test="${ uid == view.uid }">
-        <a href="/cz/modify?seq=${ view.seq }"><input type="button" value="수정하기"></a>
+        <a href="/cz/modify?seq=${ view.seq }"><input id="uploadCancle" type="button" value="수정하기"></a>
         </c:if>
         <!-- 본인인 경우 끝 -->
     </div>

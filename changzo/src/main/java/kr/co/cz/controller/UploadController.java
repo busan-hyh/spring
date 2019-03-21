@@ -19,9 +19,23 @@ public class UploadController {
 	private UploadService service;
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public String register() {
-		return "/upload/register";
+	public String register(HttpSession sess) {
+		
+		if(sess.getAttribute("user") != null) {
+			// 회원이면
+			UserVO user = (UserVO) sess.getAttribute("user");
+			String uid = user.getUid();
+			if(uid.equals("changzo")) {
+				// id가 changzo면
+				return "/upload/register";
+			}
+			return "redirect:/";
+		} else {
+			return "/login";
+		}
+		
 	}
+	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(UserVO vo) {
 		service.register(vo);
@@ -30,11 +44,16 @@ public class UploadController {
 	
 	@RequestMapping(value="/upload", method=RequestMethod.GET)
 	public String upload(HttpSession sess, Model model) {
-		UserVO user = (UserVO) sess.getAttribute("user");
-		model.addAttribute("name", user.getName());
-		model.addAttribute("hp", user.getHp());
+		if(sess.getAttribute("user") != null) {
+			UserVO user = (UserVO) sess.getAttribute("user");
+			model.addAttribute("name", user.getName());
+			model.addAttribute("hp", user.getHp());
+			
+			return "/upload/upload";
+		} else {
+			return "/login";
+		}
 		
-		return "/upload/upload";
 	}
 	@RequestMapping(value="/upload", method=RequestMethod.POST)
 	public String upload(ItemVO vo, HttpSession sess) {
@@ -49,8 +68,11 @@ public class UploadController {
 	
 	// modify view는 ListController에 있음
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String modify(String seq, HttpSession sess, ItemVO vo) {
-		UserVO user = (UserVO) sess.getAttribute("user");
+	public String modify(String seq, ItemVO vo) {
+		
+		vo.setSeq(seq);
+		
+		service.modify(vo);
 		
 		return "redirect:/mylist";
 	}

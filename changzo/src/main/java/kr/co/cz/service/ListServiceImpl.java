@@ -29,13 +29,13 @@ public class ListServiceImpl implements ListService {
 	}
 
 	@Override
-	public List<ItemVO> guSerch(String case_of, String kind_of, String gu) {
+	public List<ItemVO> guSearch(String case_of, String kind_of, String gu) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("case_of", case_of);
 		map.put("kind_of", kind_of);
 		map.put("gu", gu);
 		
-		return dao.guSerch(map);
+		return dao.guSearch(map);
 	}
 
 	@Override

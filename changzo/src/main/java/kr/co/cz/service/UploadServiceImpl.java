@@ -1,6 +1,5 @@
 package kr.co.cz.service;
 
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -27,8 +26,8 @@ public class UploadServiceImpl implements UploadService {
 	}
 
 	@Override
-	public List<ItemVO> modify(String seq) {
-		return null;
+	public void modify(ItemVO vo) {
+		dao.modify(vo);
 	}
 
 
