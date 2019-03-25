@@ -4,7 +4,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,17 +16,9 @@ public class MainController {
 	@Inject
 	private MainService service;
 	
-	@RequestMapping(value= {"","/", "/index"}, method=RequestMethod.GET)
-	public String index(HttpSession sess, Model model) {
-		if(sess.getAttribute("user") != null) {
-			UserVO user = (UserVO) sess.getAttribute("user");
-			model.addAttribute("uid", user.getUid());
-			model.addAttribute("name", user.getName());
-			
-			return "/index";
-		} else {
-			return "/login";
-		}
+	@RequestMapping(value= {"","/", "/index"})
+	public String index() {
+		return "/index";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -44,7 +35,6 @@ public class MainController {
 		
 		if(user != null) {
 			sess.setAttribute("user", user);
-			service.loginDate(vo);
 			return "redirect:/";
 		} else {
 			return "/login";
@@ -53,11 +43,8 @@ public class MainController {
 	
 	@RequestMapping(value="/logout")
 	public String logout(HttpSession sess) {
-		if(sess.getAttribute("user") != null) {
-			sess.removeAttribute("user");
-			return "/login";
-		} else {
-			return "/login";
-		}
+		sess.removeAttribute("user");
+		return "/login";
+		
 	}
 }

@@ -18,9 +18,4 @@ public class MainServiceImpl implements MainService {
 		return dao.login(vo);
 	}
 
-	@Override
-	public void loginDate(UserVO vo) {
-		dao.loginDate(vo);
-	}
-
 }

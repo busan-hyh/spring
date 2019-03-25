@@ -245,6 +245,9 @@ button {
 .mylist .done:hover {
 	background: #e1e3e8;
 }
+.mylist {
+	margin-bottom: 10px;
+}
 
 /* view */
 .view table {

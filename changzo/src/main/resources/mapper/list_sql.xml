@@ -3,8 +3,8 @@
 <mapper namespace="mapper.list_sql">
 	<select id="SELECT_LIST" resultType="kr.co.cz.vo.ItemVO">
 		SELECT seq, uid, ing, case_of, kind_of, gu, dong, scale_meter, scale_pyung,
-				sale_money_int, sale_money_unit, up_floor,  jeonse_money_int, 
-				jeonse_money_unit, rent_save_int, rent_save_unit, rent_int, rent_unit
+				sale_money_int, sale_money_unit, up_floor,  jeonse_money_int, jeonse_money_unit, 
+				jeonse_seqr_money, rent_save_int, rent_save_unit, rent_int, rent_unit
 		FROM `CZ_ITEMS` 
 		WHERE `case_of`=#{case_of} AND `ing`!=3
 		ORDER BY seq DESC 
@@ -19,7 +19,9 @@
 		FROM `CZ_ITEMS` 
 		WHERE case_of=#{case_of} 
 			AND (kind_of =#{kind_of} OR #{kind_of} = '') 
-			AND (gu =#{gu} OR #{gu} = '') 
+			AND (gu =#{gu} OR #{gu} = '')
+		AND ing != 3 
+		ORDER BY seq DESC 
 	</select>
 	<select id="SELECT_MYLIST" resultType="kr.co.cz.vo.ItemVO">
 		SELECT seq, uid, ing, case_of, kind_of, gu, dong, scale_meter, scale_pyung,
@@ -36,6 +38,8 @@
 		WHERE (case_of = #{case_of} OR #{case_of} = '') 
 			AND (kind_of =#{kind_of} OR #{kind_of} = '') 
 			AND (gu =#{gu} OR #{gu} = '') 
+			AND ing != 3 
 			AND uid=#{uid}
+		ORDER BY seq DESC 
 	</select>
 </mapper>

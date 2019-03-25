@@ -14,10 +14,10 @@ public class MainDAO {
 	private SqlSessionTemplate mybatis;
 	
 	public UserVO login(UserVO vo) {
-		return mybatis.selectOne("mapper.main_sql.SELECT_LOGIN", vo);
-	}
-	
-	public void loginDate(UserVO vo) {
-		mybatis.update("mapper.main_sql.UPDATE_LDATE", vo);
+		UserVO user = mybatis.selectOne("mapper.main_sql.SELECT_LOGIN", vo);
+		if(user != null) {
+			mybatis.update("mapper.main_sql.UPDATE_LDATE", vo);
+		}
+		return user;
 	}
 }

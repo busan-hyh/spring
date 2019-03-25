@@ -1,8 +1,6 @@
 package kr.co.cz.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -11,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.cz.service.ListService;
 import kr.co.cz.vo.ItemVO;
@@ -23,13 +22,11 @@ public class ListController {
 	private ListService service;
 	
 	@RequestMapping(value="/list")
-	public String list(String case_of, Model model, HttpSession sess) {
+	public String list(@RequestParam String case_of, Model model, HttpSession sess) {
 		if(sess.getAttribute("user") != null) {
 			List<ItemVO> list = service.list(case_of);
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("key", case_of);
-			map.put("map", list);
-			model.addAttribute("list", map);
+			model.addAttribute("list", list);
+			model.addAttribute("key", case_of);
 			
 			return "/list/list";
 		} else {
@@ -45,6 +42,7 @@ public class ListController {
 			
 			List<ItemVO> mylist = service.mylist(uid);
 			model.addAttribute("mylist", mylist);
+			model.addAttribute("uid", uid);
 			
 			return "/list/mylist";
 		} else {
@@ -53,7 +51,7 @@ public class ListController {
 	}
 	
 	@RequestMapping(value="/view")
-	public String view(String seq, Model model, HttpSession sess) {
+	public String view(@RequestParam String seq, Model model, HttpSession sess) {
 		if(sess.getAttribute("user") != null) {
 			UserVO user = (UserVO) sess.getAttribute("user");
 			model.addAttribute("uid", user.getUid());
@@ -68,19 +66,18 @@ public class ListController {
 	}
 	
 	@RequestMapping(value="/guSearch")
-	public String guSearch(String case_of, String kind_of, String gu, Model model) {
+	public String guSearch(@RequestParam String case_of, String kind_of, String gu, Model model) {
 		
 		List<ItemVO> list = service.guSearch(case_of, kind_of, gu);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("key", case_of);
-		map.put("map", list);
-		model.addAttribute("list", map);
+
+		model.addAttribute("list", list);
+		model.addAttribute("key", case_of);
 		
 		return "/list/list";
 	}
 	
 	@RequestMapping(value="/mySearch")
-	public String mySearch(String case_of, String kind_of, String gu, HttpSession sess, Model model) {
+	public String mySearch(@RequestParam String case_of, String kind_of, String gu, HttpSession sess, Model model) {
 		UserVO user = (UserVO) sess.getAttribute("user");
 		String uid = user.getUid();
 		
@@ -92,7 +89,7 @@ public class ListController {
 	
 	// modify upload는 UploadController에 있음
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modify(String seq, Model model, HttpSession sess) {
+	public String modify(@RequestParam String seq, Model model, HttpSession sess) {
 		if(sess.getAttribute("user") != null) {
 			// uid==uid 체크
 			UserVO user = (UserVO) sess.getAttribute("user");

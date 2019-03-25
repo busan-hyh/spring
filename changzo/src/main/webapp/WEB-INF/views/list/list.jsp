@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>${ list.key } 리스트</title>
+    <title>${ key } 리스트</title>
     <link rel="stylesheet" href="/cz/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="/cz/js/jquery.tablesorter.min.js"></script>
@@ -15,7 +15,7 @@
 <body>
     <div class="wrapper">
         <div class="listheader">
-            <a href="/cz/"><h2><span>${ list.key }</span> 리스트</h2></a>
+            <a href="/cz/"><h2><span>${ key }</span> 리스트</h2></a>
             <input type="hidden" id="paramList" value="list" />
             <input type="hidden" id="paramGu" value="${ param.gu }" />
             <input type="hidden" id="paramKind_of" value="${ param.kind_of }" />
@@ -27,6 +27,7 @@
                 <option value="주택">주택</option>
                 <option value="아파트">아파트</option>
                 <option value="빌라">빌라</option>
+                <option value="모텔">모텔</option>
                 <option value="토지">토지</option>
             </select>
             <select name="gu" id="gu">
@@ -55,7 +56,7 @@
         <div class="list">
             <table id="sortList" class="tablesorter">
             	<!-- 매매 -->
-            	<c:if test="${ list.key == '매매' }">
+            	<c:if test="${ key == '매매' }">
             	<thead>
                 <tr>
                     <th>종류</th>
@@ -67,7 +68,7 @@
                 </thead>
                 
                 <tbody>
-                <c:forEach var="vo" items="${ list.map }">
+                <c:forEach var="vo" items="${ list }">
                 <tr>
                     <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
                     </td>
@@ -84,7 +85,7 @@
                 
                 
                 <!-- 전세 -->
-                <c:if test="${ list.key == '전세' }">
+                <c:if test="${ key == '전세' }">
                 <thead>
                 <tr>
                     <th>종류</th>
@@ -95,7 +96,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="vo" items="${ list.map }">
+                <c:forEach var="vo" items="${ list }">
                 <tr>
                     <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
                     </td>
@@ -111,7 +112,7 @@
                 
                 
                 <!-- 월세,임대 -->
-                <c:if test="${ list.key == '월세' || list.key == '임대' }">
+                <c:if test="${ key == '월세' || key == '임대' }">
                 <thead>
                 <tr>
                     <th>종류</th>
@@ -122,7 +123,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="vo" items="${ list.map }">
+                <c:forEach var="vo" items="${ list }">
                 <tr>
                     <td><input type="hidden" name="seq" value="${ vo.seq }">${ vo.kind_of }
                     </td>

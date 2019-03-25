@@ -13,7 +13,7 @@
     <div class="login_form">
         <form action="/cz/login" method="POST">
             <input type="text" name="uid" required placeholder="아이디" autocomplete="off" />
-            <input type="password",  name="pass" required placeholder="비밀번호" />
+            <input type="password"  name="pass" required placeholder="비밀번호" />
             <input type="submit" value="로그인" />
         </form>
     </div>

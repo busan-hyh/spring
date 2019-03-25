@@ -34,6 +34,7 @@
                 <option value="주택">주택</option>
                 <option value="아파트">아파트</option>
                 <option value="빌라">빌라</option>
+                <option value="모텔">모텔</option>
                 <option value="토지">토지</option>
             </select>
             <select name="gu" id="gu">
@@ -85,6 +86,14 @@
                 </tbody>
                 
             </table>
+        </div>
+        <div>
+        	<c:if test="${ uid == 'changzo' }">
+            	<a href="/cz/register"><input id="uploadCancle" type="button" value="회원가입"></a>
+            </c:if>
+            <c:if test="${ uid != null }">
+            	<a href="/cz/logout"><input id="uploadSubmit" type="button" value="로그아웃"></a>
+            </c:if>
         </div>
     </div>
     <script src="/cz/js/dongSelector.js"></script>

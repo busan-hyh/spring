@@ -20,12 +20,7 @@
             <a href="/cz/mylist" class="dashbtn dashmybtn">내물건</a>
             <a href="/cz/upload" class="dashbtn dashmybtn">업로드</a>
         </div>
-        <div>
-        	<c:if test="${ uid == 'changzo' }">
-            	<a href="/cz/register"><input id="uploadCancle" type="button" value="회원가입"></a>
-            </c:if>
-            <a href="/cz/logout"><input id="uploadSubmit" type="button" value="로그아웃"></a>
-        </div>
+        
     </div>
 </body>
 </html>

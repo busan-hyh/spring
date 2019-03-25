@@ -37,6 +37,7 @@
                             <option value="주택">주택</option>
                             <option value="아파트" selected>아파트</option>
                             <option value="빌라">빌라</option>
+                            <option value="모텔">모텔</option>
                             <option value="토지">토지</option>
                         </select></td>
                     </tr>
