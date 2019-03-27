@@ -204,7 +204,7 @@
                         <td><input type="text" name="mng1_hp" value="${ view.mng1_hp }"></td>
                         <td><input id="managerPlus" type="button" value="+" /></td>
                     </tr>
-                    <c:if test="${ view.mng2_kind != null }">
+                    <c:if test="${ view.mng2_kind != 0 }">
                     <tr>
                         <td><input type="hidden" name="mng2_kind" value="1">담당자</td>
                         <td><input type="text" name="mng2_name" value="${ view.mng2_name }"></td>
@@ -221,7 +221,7 @@
                         <td><input name="slr1_hp" type="text" value="${ view.slr1_hp }"></td>
                         <td><input id="sellerPlus" type="button" value="+" /></td>
                     </tr>
-                    <c:if test="${ view.slr2_kind != null }">
+                    <c:if test="${ view.slr2_kind != 0 }">
                     <tr>
                         <td><select name="slr2_kind" id="seller">
                             <option value="2" selected>명의자</option>

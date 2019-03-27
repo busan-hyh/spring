@@ -6,6 +6,7 @@ public class UserVO {
 	private String pass;
 	private String name;
 	private String hp;
+	private int grade;
 	private String rdate;
 	private String ldate;
 	public int getSeq() {
@@ -37,6 +38,12 @@ public class UserVO {
 	}
 	public void setHp(String hp) {
 		this.hp = hp;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 	public String getRdate() {
 		return rdate;

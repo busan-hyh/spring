@@ -9,6 +9,7 @@
 		uid=#{uid},
 		pass=PASSWORD(#{pass}),
 		name=#{name},
+		grade=1,
 		hp=#{hp},
 		rdate=NOW()
 	</insert>

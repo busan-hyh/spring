@@ -15,7 +15,7 @@
             <tr>
                 <td>아이디</td>
                 <td><input name="uid" type="text" required>
-                <span class="resultId"></span></td>
+                <br><span class="resultId"></span></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
@@ -24,7 +24,7 @@
             <tr>
                 <td>비밀번호 확인</td>
                 <td><input name="pass_check" id="pass_check" type="password" required>
-                <span class="resultPass"></span></td>
+                <br><span class="resultPass"></span></td>
             </tr>
             <tr>
                 <td>이름</td>

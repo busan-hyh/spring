@@ -28,9 +28,9 @@ public class UploadController {
 		if(sess.getAttribute("user") != null) {
 			// 회원이면
 			UserVO user = (UserVO) sess.getAttribute("user");
-			String uid = user.getUid();
-			if(uid.equals("changzo")) {
-				// id가 changzo면
+			int grade = user.getGrade();
+			if(grade == 2) {
+				// grade가 2면
 				return "/upload/register";
 			}
 			return "redirect:/";
@@ -63,7 +63,7 @@ public class UploadController {
 	public String upload(ItemVO vo, HttpSession sess) {
 		UserVO user = (UserVO) sess.getAttribute("user");
 		
-		vo.setIng("1");
+		vo.setIng(1);
 		vo.setUid(user.getUid());
 		service.upload(vo);
 		

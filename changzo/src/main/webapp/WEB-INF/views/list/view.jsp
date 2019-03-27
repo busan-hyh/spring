@@ -40,7 +40,7 @@
                 <td>${ view.gu } ${ view.dong }</td>
             </tr>
             <!-- 본인인 경우 -->
-            <c:if test="${ uid == view.uid || uid == 'changzo' }">
+            <c:if test="${ uid == view.uid || grade == 2 }">
             <tr class="mydetail_view">
                 <td>상세주소</td>
                 <td>${ view.detail_addr }</td>
@@ -151,20 +151,20 @@
                 <td>담당자</td>
                 <td><a href="tel:${ view.mng1_hp }">${ view.mng1_name } ${ view.mng1_hp }</a></td>
             </tr>
-            <c:if test="${ view.mng2_kind != null }">
+            <c:if test="${ view.mng2_kind != 0 }">
             <tr>
                 <td>담당자2</td>
                 <td><a href="tel:${ view.mng2_hp }">${ view.mng2_name } ${ view.mng2_hp }</a></td>
             </tr>
             </c:if>
             <!-- 본인인 경우 -->
-            <c:if test="${ uid == view.uid || uid == 'changzo' }">
+            <c:if test="${ uid == view.uid || grade == 2 }">
             <tr class="mydetail_view">
                 <td><c:if test="${ view.slr1_kind == 2 }">명의자</c:if>
                 <c:if test="${ view.slr1_kind == 3 }">관리자</c:if></td>
                 <td>${ view.slr1_name } <a href="tel:${ view.slr1_hp }">${ view.slr1_hp }</a></td>
             </tr>
-            <c:if test="${ view.slr2_kind != null }">
+            <c:if test="${ view.slr2_kind != 0 }">
             <tr class="mydetail_view">
                 <td><c:if test="${ view.slr2_kind == 2 }">명의자</c:if>
                 <c:if test="${ view.slr2_kind == 3 }">관리자</c:if></td>

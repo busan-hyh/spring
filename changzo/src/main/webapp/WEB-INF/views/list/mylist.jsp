@@ -88,7 +88,7 @@
             </table>
         </div>
         <div>
-        	<c:if test="${ uid == 'changzo' }">
+        	<c:if test="${ grade == 2 }">
             	<a href="/cz/register"><input id="uploadCancle" type="button" value="회원가입"></a>
             </c:if>
             <c:if test="${ uid != null }">

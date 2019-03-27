@@ -43,6 +43,7 @@ public class ListController {
 			List<ItemVO> mylist = service.mylist(uid);
 			model.addAttribute("mylist", mylist);
 			model.addAttribute("uid", uid);
+			model.addAttribute("grade", user.getGrade());
 			
 			return "/list/mylist";
 		} else {
@@ -55,10 +56,10 @@ public class ListController {
 		if(sess.getAttribute("user") != null) {
 			UserVO user = (UserVO) sess.getAttribute("user");
 			model.addAttribute("uid", user.getUid());
+			model.addAttribute("grade", user.getGrade());
 			
 			ItemVO vo = service.view(seq);
 			model.addAttribute("view", vo);
-			
 			return "/list/view";
 		} else {
 			return "/login";
