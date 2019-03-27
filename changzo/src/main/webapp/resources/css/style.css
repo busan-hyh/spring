@@ -51,7 +51,6 @@ a:hover, a:active, a:focus { text-decoration:none; }
 }
 .wrapper img {
     width: 100%;
-    box-shadow: 1px 3px 10px 0 rgba(0, 0, 0, 0.4);
 }
 .dashboard {
     width: 100%;

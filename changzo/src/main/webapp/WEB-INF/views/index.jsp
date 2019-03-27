@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>대시보드</title>
     <link rel="stylesheet" href="/cz/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/cz/img/favi.ico" />
 </head>
 <body>
     <div class="wrapper">

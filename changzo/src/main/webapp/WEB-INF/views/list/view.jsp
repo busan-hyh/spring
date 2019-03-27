@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>내물건 상세</title>
     <link rel="stylesheet" href="/cz/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/cz/img/favi.ico" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
