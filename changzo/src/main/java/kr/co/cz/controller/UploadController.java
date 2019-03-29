@@ -46,6 +46,25 @@ public class UploadController {
 		return "redirect:/login";
 	}
 	
+	@RequestMapping(value="/regimodi", method=RequestMethod.GET)
+	public String regimodi(HttpSession sess, Model model) {
+		if(sess.getAttribute("user") != null) {
+			UserVO user = (UserVO) sess.getAttribute("user");
+			model.addAttribute("user", user);
+			
+			return "/upload/regimodi";
+		} else {
+			return "redirect:/login";
+		}
+	}
+	
+	@RequestMapping(value="/regimodi", method=RequestMethod.POST)
+	public String regimodi(UserVO vo) {
+		service.regimodi(vo);
+		
+		return "redirect:/mylist";
+	}
+	
 	@RequestMapping(value="/upload", method=RequestMethod.GET)
 	public String upload(HttpSession sess, Model model) {
 		if(sess.getAttribute("user") != null) {

@@ -37,5 +37,10 @@ public class UploadServiceImpl implements UploadService {
 		return dao.usercheck(uid);
 	}
 
+	@Override
+	public void regimodi(UserVO vo) {
+		dao.regimodi(vo);
+	}
+
 
 }

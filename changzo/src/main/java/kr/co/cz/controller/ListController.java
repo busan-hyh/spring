@@ -56,7 +56,6 @@ public class ListController {
 		if(sess.getAttribute("user") != null) {
 			UserVO user = (UserVO) sess.getAttribute("user");
 			model.addAttribute("uid", user.getUid());
-			model.addAttribute("grade", user.getGrade());
 			
 			ItemVO vo = service.view(seq);
 			model.addAttribute("view", vo);

@@ -28,8 +28,9 @@
                 <option value="주택">주택</option>
                 <option value="아파트">아파트</option>
                 <option value="빌라">빌라</option>
-                <option value="모텔">모텔</option>
+                <option value="숙박업소">숙박업소</option>
                 <option value="토지">토지</option>
+                <option value="기타">기타</option>
             </select>
             <select name="gu" id="gu">
                 <option value="전체구">전체 구</option>

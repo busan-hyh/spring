@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +36,9 @@
                 <option value="주택">주택</option>
                 <option value="아파트">아파트</option>
                 <option value="빌라">빌라</option>
-                <option value="모텔">모텔</option>
+                <option value="숙박업소">숙박업소</option>
                 <option value="토지">토지</option>
+                <option value="기타">기타</option>
             </select>
             <select name="gu" id="gu">
                 <option value="전체구">전체 구</option>
@@ -77,7 +79,7 @@
                     </td>
                     <td>${ vo.kind_of }</td>
                     <td>${ vo.gu } ${ vo.dong }</td>
-                    <td>${ vo.scale_pyung }</td>
+                    <td><fmt:parseNumber value="${ vo.scale_pyung }" integerOnly="true" /></td>
                     <td>평</td>
                     <c:if test="${ vo.case_of == '매매' }"><td>${ vo.sale_money_int*vo.sale_money_unit }</td></c:if>
                     <c:if test="${ vo.case_of == '전세' }"><td>${ vo.jeonse_money_int*vo.jeonse_money_unit }</td></c:if>
@@ -93,6 +95,7 @@
             	<a href="/cz/register"><input id="uploadCancle" type="button" value="회원가입"></a>
             </c:if>
             <c:if test="${ uid != null }">
+            	<a href="/cz/regimodi"><input id="uploadCancle" type="button" value="정보수정"></a>
             	<a href="/cz/logout"><input id="uploadSubmit" type="button" value="로그아웃"></a>
             </c:if>
         </div>

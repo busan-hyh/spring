@@ -10,4 +10,5 @@ public interface UploadService {
 	public void upload(ItemVO vo);
 	public void modify(ItemVO vo);
 	public Map<String, Object> usercheck(String uid);
+	public void regimodi(UserVO vo);
 }

@@ -45,6 +45,11 @@
 			`pkl`=#{pkl}, `elb`=#{elb}, `mng1_kind`=#{mng1_kind}, `mng1_name`=#{mng1_name}, `mng1_hp`=#{mng1_hp}, `mng2_kind`=#{mng2_kind}, `mng2_name`=#{mng2_name}, 
 			`mng2_hp`=#{mng2_hp}, `slr1_kind`=#{slr1_kind}, `slr1_name`=#{slr1_name}, `slr1_hp`=#{slr1_hp}, `slr2_kind`=#{slr2_kind}, `slr2_name`=#{slr2_name}, `slr2_hp`=#{slr2_hp}
 		WHERE seq=#{seq}
-		LIMIT 1;
+		LIMIT 1
+	</update>
+	<update id="UPDATE_REGI">
+		UPDATE `CZ_USER`
+		SET `pass`=PASSWORD(#{pass}), `hp`=#{hp}
+		WHERE `uid`=#{uid}
 	</update>
 </mapper>

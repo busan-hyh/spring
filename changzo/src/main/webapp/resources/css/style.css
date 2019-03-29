@@ -133,6 +133,7 @@ a:hover, a:active, a:focus { text-decoration:none; }
     float: left;
     width: 67px;
     height: 38px;
+	margin-right: 5px;
 }
 .uploadrCard #manager2, .uploadrCard #manager2 * {
 	display:none;
@@ -246,6 +247,25 @@ button {
 }
 .mylist {
 	margin-bottom: 10px;
+}
+
+/* register */
+.regi {
+	max-width: 400px;
+    margin: 0 auto;
+}
+.regi table input {
+	height: 30px;
+	font-size: 2em;
+	width: 100%;
+	margin-bottom: 5px;
+}
+.regi table td:nth-child(1) {
+	font-size: 1.5em;
+	width: 33%;
+}
+.regi table input[readonly]{
+	border: 0px;
 }
 
 /* view */

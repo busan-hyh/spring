@@ -38,4 +38,9 @@ public class UploadDAO {
         
 		return data;
 	}
+	
+	public void regimodi(UserVO vo) {
+		mybatis.update("mapper.upload_sql.UPDATE_REGI", vo);
+	}
+
 }

@@ -41,7 +41,7 @@
                 <td>${ view.gu } ${ view.dong }</td>
             </tr>
             <!-- 본인인 경우 -->
-            <c:if test="${ uid == view.uid || grade == 2 }">
+            <c:if test="${ uid == view.uid }">
             <tr class="mydetail_view">
                 <td>상세주소</td>
                 <td>${ view.detail_addr }</td>
@@ -159,7 +159,7 @@
             </tr>
             </c:if>
             <!-- 본인인 경우 -->
-            <c:if test="${ uid == view.uid || grade == 2 }">
+            <c:if test="${ uid == view.uid }">
             <tr class="mydetail_view">
                 <td><c:if test="${ view.slr1_kind == 2 }">명의자</c:if>
                 <c:if test="${ view.slr1_kind == 3 }">관리자</c:if></td>
