@@ -25,7 +25,12 @@ $('input[type="text"]').keydown(function() {
 });
 // numberOnly 텍스트필드에 숫자만 허용하기
 $("input:text[numberOnly]").on("keyup", function() {
-    $(this).val($(this).val().replace(/[^0-9]/g,""));
+    $(this).val($(this).val().replace(/[^0-9.]/g,""));
+});
+$("input[name=scale_toji], input[name=scale_yeon], input[name=scale_gun]").on("focusout", function(){
+	if($(this).val() == ""){
+		$(this).val("0");
+	}
 });
 
 $(document).ready(function(){

@@ -116,15 +116,15 @@
                     </tr>
                     <tr>
                         <td>토지면적</td>
-                        <td colspan="2"><input type="text" class="sMeter" name="scale_toji" numberOnly>㎡ = <span class="pyung"></span>평</td>
+                        <td colspan="2"><input type="text" class="sMeter" name="scale_toji" value="0" numberOnly>㎡ = <span class="pyung"></span>평</td>
                     </tr>
                     <tr>
                         <td>연면적</td>
-                        <td colspan="2"><input type="text" class="sMeter" name="scale_yeon" numberOnly>㎡ = <span class="pyung"></span>평</td>
+                        <td colspan="2"><input type="text" class="sMeter" name="scale_yeon" value="0" numberOnly>㎡ = <span class="pyung"></span>평</td>
                     </tr>
                     <tr>
                         <td>건축면적</td>
-                        <td colspan="2"><input type="text" class="sMeter" name="scale_gun" numberOnly>㎡ = <span class="pyung"></span>평</td>
+                        <td colspan="2"><input type="text" class="sMeter" name="scale_gun" value="0" numberOnly>㎡ = <span class="pyung"></span>평</td>
                     </tr>
                 </table>
                 <table id="forJeonse">

@@ -22,9 +22,9 @@ public class ItemVO {
 	private String sale_rend_money;
 	private String up_floor;
 	private String down_floor;
-	private String scale_toji;
-	private String scale_yeon;
-	private String scale_gun;
+	private float scale_toji;
+	private float scale_yeon;
+	private float scale_gun;
 	private String jeonse_money_int;
 	private int jeonse_money_unit;
 	private String jeonse_seqr_money;
@@ -164,22 +164,22 @@ public class ItemVO {
 	public void setDown_floor(String down_floor) {
 		this.down_floor = down_floor;
 	}
-	public String getScale_toji() {
+	public float getScale_toji() {
 		return scale_toji;
 	}
-	public void setScale_toji(String scale_toji) {
+	public void setScale_toji(float scale_toji) {
 		this.scale_toji = scale_toji;
 	}
-	public String getScale_yeon() {
+	public float getScale_yeon() {
 		return scale_yeon;
 	}
-	public void setScale_yeon(String scale_yeon) {
+	public void setScale_yeon(float scale_yeon) {
 		this.scale_yeon = scale_yeon;
 	}
-	public String getScale_gun() {
+	public float getScale_gun() {
 		return scale_gun;
 	}
-	public void setScale_gun(String scale_gun) {
+	public void setScale_gun(float scale_gun) {
 		this.scale_gun = scale_gun;
 	}
 	public String getJeonse_money_int() {
